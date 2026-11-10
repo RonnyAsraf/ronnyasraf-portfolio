@@ -13,7 +13,7 @@ const { cs } = Astro.props as { cs: CaseStudy };
 const next = getCaseStudy(cs.next);
 const dir = `images/case-studies/${cs.slug}`;
 ---
-<Base title={cs.name} description={cs.summary} image={`/${dir}/hero.png`}>
+<Base title={cs.name} description={cs.summary} image={`/${dir}/hero.webp`}>
   <CaseHero title={cs.title} credits={cs.credits} summary={cs.summary} />
 
   <div class="content wrap">
