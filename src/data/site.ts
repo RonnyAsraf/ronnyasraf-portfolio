@@ -9,7 +9,7 @@ export const site = {
   phoneITLink: 'https://wa.me/393891646850',
   email: 'ronnyasraf6@gmail.com',
   // TODO: add the LinkedIn profile URL (the current Wix site links this label to a phone number by mistake)
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/ronnyasraf/',
   location: 'Italy',
 };
 

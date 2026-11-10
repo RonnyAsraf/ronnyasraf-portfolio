@@ -83,7 +83,7 @@ export const caseStudies: CaseStudy[] = [
       { num: '04', title: 'Meetings', caption: 'A calendar built for client work: schedule in a click, see upcoming meetings and save a summary right after each one.', images: ['04'] },
       { num: '05', title: 'The client app', caption: 'Clients get their own window into their money: budget, cash flow, capital and an emergency fund, always in sync with their advisor.', images: ['05'] },
       { num: '06', title: 'AI insights', caption: "AI turns the client's data into plain-language insights, and a chat lets them ask about their money anytime between meetings.", images: ['06'] },
-      { num: '07', title: 'White label', caption: 'Velora is also sold as a white-label product. Each advisory firm gets the same app in its own brand, with its own logo, colors and advisor photo, built on one flexible design system.', images: ['07-white-label', '07'], inset: ['07-white-label'] },
+      { num: '07', title: 'White label', caption: 'Velora is also sold as a white-label product. Each advisory firm gets the same app in its own brand, with its own logo, colors and advisor photo, built on one flexible design system.', images: ['07-white-label'], inset: ['07-white-label'] },
       { num: '08', title: 'App Store', caption: 'Store screenshots that tell the product story in one line each, designed as a template every white-label brand can reuse.', images: ['08'] },
       { num: '09', title: 'Brand and website', caption: 'A calm, confident identity in black and fresh mint, carried from the logo through the product and the marketing website.', images: ['09'] },
     ],

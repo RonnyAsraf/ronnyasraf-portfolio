@@ -6,7 +6,11 @@ import { caseStudies } from '../data/caseStudies';
 import { uxuiProjects, allSites } from '../data/projects';
 import { site } from '../data/site';
 
-const homeSites = allSites.slice(0, 9);
+// Order as set in the Figma home boards
+const HOME_UXUI = ['bluex-ai', 'sense', 'lerni', 'rge-onboarding', 'greenclick', 'memorit-co'];
+const HOME_SITES = ['auto-fit', 'cover-site', 'the-morning-club', 'otto-seven-senses', 'the-code-of-creation', 'ganit-park', 'go-power', 'greenclick', 'qombat'];
+const homeUxui = HOME_UXUI.map((s) => uxuiProjects.find((p) => p.slug === s)!);
+const homeSites = HOME_SITES.map((s) => allSites.find((x) => x.slug === s)!);
 const services = [
   { n: '(01)', title: 'UI UX', body: 'User Research and Analysis / Wireframing and Prototyping / User Interface Design / User Experience Testing / Responsive Design Solutions' },
   { n: '(02)', title: 'Web design', body: 'Market research and competitor research / User Research / Wireframing / User Interface Design / Development in code or Wix Studio / Connection domain / Basic SEO' },
@@ -28,7 +32,7 @@ const services = [
   </CardRow>
 
   <CardRow id="ux-ui" label="UX / UI projects">
-    {uxuiProjects.map((p) => (
+    {homeUxui.map((p) => (
       <ProjectCard image={`images/cards/ui-ux/${p.slug}`} name={p.name} tags={p.tags} year={p.year} href={`/ui-ux/${p.slug}`} />
     ))}
   </CardRow>
