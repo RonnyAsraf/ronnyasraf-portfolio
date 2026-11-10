@@ -9,6 +9,7 @@
 export interface Section {
   num: string;
   title: string;
+  link?: string; // live website, shown as a Visit site button under the caption
   caption: string;
   images: string[]; // base names inside the case study folder
   inset?: string[]; // images shown small and centred on a grey panel (e.g. a single phone video)
@@ -25,7 +26,6 @@ export interface CaseStudy {
   sections: Section[];
   quote?: { text: string; author: string };
   next: string; // slug of the next case study
-  url?: string; // live website, shown as a View site button
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -44,11 +44,10 @@ export const caseStudies: CaseStudy[] = [
       { num: '03', title: 'Payment', caption: "Every real-world case on one screen: tips, discounts, partial payments and seven payment methods. A discount above the limit asks for a manager's code without leaving the flow.", images: ['03'] },
       { num: '04', title: 'On the floor', caption: "Tables, orders and shifts in the waiter's pocket. Clear status colors and swipe actions make what matters readable at a glance, even mid-shift.", images: ['04'] },
       { num: '05', title: 'Back office', caption: "The manager's control room: live sales, food and labor costs, AI recommendations and the floor plan of today's reservations.", images: ['05', '05-b'] },
-      { num: '06', title: 'Marketing website', caption: 'I also designed and built coverpos.com, the site that explains Cover to restaurant owners and books intro meetings.', images: ['06'] },
+      { num: '06', title: 'Marketing website', caption: 'I also designed and built coverpos.com, the site that explains Cover to restaurant owners and books intro meetings.', images: ['06'], link: 'https://www.coverpos.com/' },
     ],
     // quote: { text: '', author: 'Liran Elaiof, Founder, Cover' }, // waiting for Liran's testimonial
     next: 'the-money-map',
-    url: 'https://www.coverpos.com/',
   },
   {
     slug: 'the-money-map',
@@ -87,10 +86,9 @@ export const caseStudies: CaseStudy[] = [
       { num: '06', title: 'AI insights', caption: "AI turns the client's data into plain-language insights, and a chat lets them ask about their money anytime between meetings.", images: ['06'] },
       { num: '07', title: 'White label', caption: 'Velora is also sold as a white-label product. Each advisory firm gets the same app in its own brand, with its own logo, colors and advisor photo, built on one flexible design system.', images: ['07-white-label'], inset: ['07-white-label'] },
       { num: '08', title: 'App Store', caption: 'Store screenshots that tell the product story in one line each, designed as a template every white-label brand can reuse.', images: ['08'] },
-      { num: '09', title: 'Brand and website', caption: 'A calm, confident identity in black and fresh mint, carried from the logo through the product and the marketing website.', images: ['09'] },
+      { num: '09', title: 'Brand and website', caption: 'A calm, confident identity in black and fresh mint, carried from the logo through the product and the marketing website.', images: ['09'], link: 'https://www.velora-finance.com/' },
     ],
     next: 'timelines',
-    url: 'https://www.velora-finance.com/',
   },
   {
     slug: 'timelines',
