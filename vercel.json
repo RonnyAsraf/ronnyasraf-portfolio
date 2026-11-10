@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/websites-design", "destination": "/websites", "permanent": true },
+    { "source": "/ui-ux/restaurant-ai", "destination": "/case-studies/cover", "permanent": true },
+    { "source": "/case-studies/mapat-ha%E2%80%99kesef-", "destination": "/case-studies/the-money-map", "permanent": true },
+    { "source": "/case-studies/mapat-ha’kesef-", "destination": "/case-studies/the-money-map", "permanent": true },
+    { "source": "/case-studies/lerni", "destination": "/ui-ux/lerni", "permanent": true },
+    { "source": "/ui-ux/timelines", "destination": "/case-studies/timelines", "permanent": true },
+    { "source": "/ui-ux/media-minder-app", "destination": "/ui-ux/sense", "permanent": true },
+    { "source": "/ui-ux/rge-onboarding-platform", "destination": "/ui-ux/rge-onboarding", "permanent": true },
+    { "source": "/ui-ux/oh-hi!", "destination": "/ui-ux/oh-hi", "permanent": true },
+    { "source": "/ui-ux/oh-hi%21", "destination": "/ui-ux/oh-hi", "permanent": true },
+    { "source": "/ui-ux/memorit.co", "destination": "/ui-ux/memorit-co", "permanent": true }
+  ]
+}

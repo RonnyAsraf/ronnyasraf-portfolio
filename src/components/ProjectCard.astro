@@ -2,15 +2,15 @@
 import { findImage } from '../lib/img';
 
 interface Props {
-  slug: string; // card image: public/images/cards/<slug>.*
+  image: string; // card image base path, e.g. images/cards/case-studies/cover
   name: string;
   tags: string;
   year: string;
   href?: string; // internal page
   url?: string; // external live site
 }
-const { slug, name, tags, year, href, url } = Astro.props;
-const img = findImage(`images/cards/${slug}`);
+const { image, name, tags, year, href, url } = Astro.props;
+const img = findImage(image);
 const primary = href ?? url;
 const external = !href && !!url;
 ---

@@ -1,12 +1,12 @@
 ---
 /** A full-width visual panel exported from Figma (screens already on their grey background). Shows a placeholder until the file exists. */
 import { findImage } from '../lib/img';
-interface Props { base: string; alt: string; ratio?: string; eager?: boolean; }
-const { base, alt, ratio = '1850 / 1100', eager = false } = Astro.props;
+interface Props { base: string; alt: string; ratio?: string; eager?: boolean; inset?: boolean; }
+const { base, alt, ratio = '1850 / 1100', eager = false, inset = false } = Astro.props;
 const src = findImage(base);
 const isVideo = src?.endsWith('.mp4');
 ---
-<figure class="panel" style={src ? undefined : `aspect-ratio:${ratio}`}>
+<figure class:list={["panel", { "panel--inset": inset && src }]} style={src && !inset ? undefined : `aspect-ratio:${ratio}`}>
   {src && isVideo && <video src={src} autoplay muted loop playsinline aria-label={alt}></video>}
   {src && !isVideo && <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />}
   {!src && <span class="panel__ph">{base.split('/').slice(-2).join(' / ')}</span>}
@@ -18,5 +18,7 @@ const isVideo = src?.endsWith('.mp4');
     background: var(--panel); display: grid; place-items: center;
   }
   .panel img, .panel video { width: 100%; height: auto; display: block; }
+  .panel--inset { padding: clamp(24px, 10px + 3.6vw, 80px); }
+  .panel--inset img, .panel--inset video { width: auto; height: 100%; max-height: 100%; border-radius: clamp(16px, 10px + 1.2vw, 32px); box-shadow: var(--shadow-screen); }
   .panel__ph { font-size: var(--fs-meta); text-transform: uppercase; color: var(--muted); }
 </style>

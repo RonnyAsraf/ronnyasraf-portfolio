@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseHero from '../../components/CaseHero.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { allSites } from '../../data/projects';
+
+const summary =
+  'High-performing, responsive websites with a distinct visual identity. I lead every project personally, from strategy and site architecture through design, development and launch.';
+---
+<Base title="Websites" description={summary}>
+  <CaseHero title="websites" credits={[`${allSites.length} live sites\n2023-26`, 'Design & development\nCode, Wix Studio, Elementor, Shopify']} summary={summary} />
+  <section class="grid wrap" aria-label="All websites">
+    {allSites.map((s) => <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />)}
+  </section>
+</Base>
+
+<style>
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px 40px;
+    padding-bottom: var(--gap-section);
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 48px 24px; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
+</style>

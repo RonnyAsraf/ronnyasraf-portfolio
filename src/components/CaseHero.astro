@@ -18,7 +18,7 @@ const scale = Math.min(1, 9 / Math.max(longest, 1));
 
 <style>
   .chero {
-    display: grid; grid-template-columns: 1fr minmax(0, 1000px); gap: 80px; align-items: end;
+    display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: clamp(40px, 20px + 4vw, 80px); align-items: end;
     padding-top: clamp(64px, 44px + 5.2vw, 140px); padding-bottom: clamp(48px, 35px + 3.4vw, 100px);
   }
   .chero__left { display: flex; flex-direction: column; gap: clamp(24px, 15px + 2.4vw, 56px); min-width: 0; }
@@ -28,7 +28,7 @@ const scale = Math.min(1, 9 / Math.max(longest, 1));
   }
   .chero__credits { display: flex; gap: clamp(32px, 12px + 5.2vw, 120px); margin: 0; }
   .chero__credits dd { margin: 0; font-size: var(--fs-meta); text-transform: uppercase; line-height: 1.4; }
-  .chero__summary { font-size: var(--fs-summary); line-height: 1.18; letter-spacing: -0.015em; }
+  .chero__summary { justify-self: end; max-width: 1000px; font-size: var(--fs-summary); line-height: 1.18; letter-spacing: -0.015em; }
 
   @media (max-width: 1000px) {
     .chero { grid-template-columns: 1fr; gap: 32px; align-items: start; }

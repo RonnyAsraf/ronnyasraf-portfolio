@@ -23,19 +23,19 @@ const services = [
 
   <CardRow id="case-studies" label="Case studies" stackOnMobile>
     {caseStudies.map((c) => (
-      <ProjectCard slug={c.slug} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
+      <ProjectCard image={`images/cards/case-studies/${c.slug}`} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
     ))}
   </CardRow>
 
   <CardRow id="ux-ui" label="UX / UI projects">
     {uxuiProjects.map((p) => (
-      <ProjectCard slug={p.slug} name={p.name} tags={p.tags} year={p.year} href={`/ui-ux/${p.slug}`} />
+      <ProjectCard image={`images/cards/ui-ux/${p.slug}`} name={p.name} tags={p.tags} year={p.year} href={`/ui-ux/${p.slug}`} />
     ))}
   </CardRow>
 
   <CardRow id="websites" label="Websites">
     {homeSites.map((s) => (
-      <ProjectCard slug={s.slug} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />
+      <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />
     ))}
   </CardRow>
   <div class="wrap all-sites"><a class="pill" href="/websites">All {allSites.length} websites →</a></div>

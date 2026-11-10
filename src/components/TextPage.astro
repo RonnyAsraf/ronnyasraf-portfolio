@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+interface Props { title: string; heading: string; updated: string; }
+const { title, heading, updated } = Astro.props;
+---
+<Base title={title}>
+  <article class="text wrap">
+    <h1>{heading}</h1>
+    <p class="updated">Last updated: {updated}</p>
+    <slot />
+  </article>
+</Base>
+
+<style>
+  .text { max-width: calc(820px + 2 * var(--pad)); padding-top: clamp(48px, 30px + 4.6vw, 120px); padding-bottom: var(--gap-section); }
+  h1 { font-size: clamp(40px, 26px + 3.6vw, 96px); font-weight: 500; line-height: .95; letter-spacing: -0.04em; }
+  .updated { margin: 16px 0 48px; font-size: var(--fs-meta); text-transform: uppercase; color: var(--muted); }
+  .text :global(h2) { font-size: var(--fs-label); font-weight: 500; text-transform: uppercase; margin: 40px 0 12px; }
+  .text :global(p), .text :global(li) { font-size: clamp(16px, 15px + .26vw, 20px); line-height: 1.5; }
+  .text :global(ul) { list-style: disc; padding-left: 1.2em; }
+  .text :global(a) { text-decoration: underline; text-underline-offset: 3px; }
+</style>

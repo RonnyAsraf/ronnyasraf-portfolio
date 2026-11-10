@@ -22,7 +22,7 @@ export function listImages(dir: string): string[] {
   if (!fs.existsSync(full)) return [];
   return fs
     .readdirSync(full)
-    .filter((f) => EXTS.includes(path.extname(f).toLowerCase()) && !f.startsWith('card'))
+    .filter((f) => EXTS.includes(path.extname(f).toLowerCase()))
     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
     .map((f) => '/' + path.posix.join(dir.replace(/^\//, ''), f));
 }

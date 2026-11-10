@@ -1,0 +1,13 @@
+---
+import ProjectPage from '../../components/ProjectPage.astro';
+import { uxuiProjects, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return uxuiProjects.map((p, i) => {
+    const n = uxuiProjects[(i + 1) % uxuiProjects.length];
+    return { params: { slug: p.slug }, props: { project: p, next: { href: `/ui-ux/${n.slug}`, title: n.title } } };
+  });
+}
+const { project, next } = Astro.props as { project: Project; next: { href: string; title: string } };
+---
+<ProjectPage project={project} dir={`images/ui-ux/${project.slug}`} next={next} />

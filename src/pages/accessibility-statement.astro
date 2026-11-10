@@ -1,0 +1,26 @@
+---
+import TextPage from '../components/TextPage.astro';
+import { site } from '../data/site';
+---
+<TextPage title="Accessibility Statement" heading="Accessibility statement" updated="November 2026">
+  <p>I want www.ronnyasraf.com to be usable by everyone, including people with disabilities who browse with assistive technologies.</p>
+
+  <h2>Standard</h2>
+  <p>The site is designed to meet the Israeli Equal Rights for Persons with Disabilities (Service Accessibility Adjustments) Regulations, 2013, and Israeli Standard SI 5568, which is based on the Web Content Accessibility Guidelines (WCAG) 2.0 at level AA.</p>
+
+  <h2>What has been done</h2>
+  <ul>
+    <li>Semantic structure with a clear heading hierarchy and landmarks</li>
+    <li>A "Skip to main content" link and full keyboard navigation with visible focus</li>
+    <li>Text alternatives for meaningful images</li>
+    <li>Sufficient color contrast and text that scales with browser zoom</li>
+    <li>Respect for the "reduce motion" setting of your device</li>
+    <li>Responsive layout for phones, tablets and desktops</li>
+  </ul>
+
+  <h2>Known limitations</h2>
+  <p>Some project images show screens with small text, as they appear in the original products. If any content is hard to access, please let me know and I will provide it in another way.</p>
+
+  <h2>Accessibility coordinator</h2>
+  <p>Ronny Asraf, phone <a href={site.whatsapp}>{site.phoneIL}</a>, email <a href={`mailto:${site.email}`}>{site.email}</a></p>
+</TextPage>

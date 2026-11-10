@@ -22,7 +22,7 @@ const dir = `images/case-studies/${cs.slug}`;
     {cs.sections.map((s) => (
       <section class="cs-section">
         <div class="cs-section__panels">
-          {s.images.map((img) => <Panel base={`${dir}/${img}`} alt={`${cs.name}: ${s.title}`} />)}
+          {s.images.map((img) => <Panel base={`${dir}/${img}`} alt={`${cs.name}: ${s.title}`} inset={s.inset?.includes(img)} />)}
         </div>
         <SectionLabel num={s.num} title={s.title} caption={s.caption} />
       </section>

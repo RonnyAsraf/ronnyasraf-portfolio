@@ -1,0 +1,35 @@
+---
+/** Shared layout for the shorter UX/UI and website project pages: split hero + every image in the project folder. */
+import Base from '../layouts/Base.astro';
+import CaseHero from './CaseHero.astro';
+import Panel from './Panel.astro';
+import NextProject from './NextProject.astro';
+import { listImages } from '../lib/img';
+import type { Project } from '../data/projects';
+
+interface Props { project: Project; dir: string; next: { href: string; title: string } }
+const { project, dir, next } = Astro.props;
+const images = listImages(dir);
+---
+<Base title={project.name} description={project.summary}>
+  <CaseHero title={project.title} credits={project.credits} summary={project.summary} />
+  {project.url && (
+    <div class="wrap visit"><a class="pill" href={project.url} target="_blank" rel="noopener">Visit site ↗</a></div>
+  )}
+  <div class="content wrap">
+    {images.length
+      ? images.map((src, i) => (
+          <figure class="shot"><img src={src} alt={`${project.name}: screen ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></figure>
+        ))
+      : [1, 2, 3].map((n) => <Panel base={`${dir}/${n}`} alt={project.name} />)}
+    <NextProject href={next.href} title={next.title} />
+  </div>
+</Base>
+
+<style>
+  .visit { margin-top: calc(-1 * clamp(16px, 10px + 2vw, 48px)); padding-bottom: clamp(32px, 20px + 3vw, 64px); }
+  .content { display: flex; flex-direction: column; gap: clamp(16px, 8px + 2vw, 40px); padding-bottom: var(--gap-section); }
+  .content :global(.next) { margin-top: calc(var(--gap-section) - clamp(16px, 8px + 2vw, 40px)); }
+  .shot { margin: 0; border-radius: var(--radius-panel); overflow: hidden; background: var(--panel); }
+  .shot img { width: 100%; height: auto; }
+</style>
