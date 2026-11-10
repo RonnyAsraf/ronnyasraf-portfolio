@@ -1,0 +1,11 @@
+# Old Wix URLs -> new pages (Cloudflare Pages)
+/websites-design                          /websites                     301
+/ui-ux/restaurant-ai                      /case-studies/cover           301
+/case-studies/mapat-ha%E2%80%99kesef-     /case-studies/the-money-map   301
+/case-studies/lerni                       /ui-ux/lerni                  301
+/ui-ux/timelines                          /case-studies/timelines       301
+/ui-ux/media-minder-app                   /ui-ux/sense                  301
+/ui-ux/rge-onboarding-platform            /ui-ux/rge-onboarding         301
+/ui-ux/oh-hi!                             /ui-ux/oh-hi                  301
+/ui-ux/oh-hi%21                           /ui-ux/oh-hi                  301
+/ui-ux/memorit.co                         /ui-ux/memorit-co             301
