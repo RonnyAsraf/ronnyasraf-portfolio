@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import CaseHero from './CaseHero.astro';
 import Panel from './Panel.astro';
 import NextProject from './NextProject.astro';
-import { listImages } from '../lib/img';
+import { listImages, srcsetFor } from '../lib/img';
 import type { Project } from '../data/projects';
 
 interface Props { project: Project; dir: string; next: { href: string; title: string } }
@@ -19,7 +19,7 @@ const images = listImages(dir);
   <div class="content wrap">
     {images.length
       ? images.map((src, i) => (
-          <figure class="shot"><img src={src} alt={`${project.name}: screen ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></figure>
+          <figure class="shot"><img src={src} srcset={srcsetFor(src, 3700)} sizes="(max-width: 1920px) 96vw, 1850px" alt={`${project.name}: screen ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" /></figure>
         ))
       : [1, 2, 3].map((n) => <Panel base={`${dir}/${n}`} alt={project.name} />)}
     <NextProject href={next.href} title={next.title} />
