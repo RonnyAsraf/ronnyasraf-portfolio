@@ -42,7 +42,6 @@ const services = [
       <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />
     ))}
   </CardRow>
-  <div class="wrap all-sites"><a class="pill" href="/websites">All {allSites.length} websites →</a></div>
 
   <section class="about dark wrap" id="about">
     <h2 class="label">Hi there again! I'm Ronny.</h2>
@@ -84,7 +83,6 @@ const services = [
     max-width: 646px;
   }
 
-  .all-sites { margin-top: calc(-1 * clamp(24px, 10px + 3vw, 60px)); padding-bottom: clamp(64px, 40px + 6vw, 140px); }
 
   .dark { background: var(--ink); color: var(--white); }
   .about {
