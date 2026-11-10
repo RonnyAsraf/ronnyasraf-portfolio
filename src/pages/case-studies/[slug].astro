@@ -15,6 +15,9 @@ const dir = `images/case-studies/${cs.slug}`;
 ---
 <Base title={cs.name} description={cs.summary} image={`/${dir}/hero.webp`}>
   <CaseHero title={cs.title} credits={cs.credits} summary={cs.summary} />
+  {cs.url && (
+    <div class="wrap visit"><a class="pill" href={cs.url} target="_blank" rel="noopener">View site ↗</a></div>
+  )}
 
   <div class="content wrap">
     <Panel base={`${dir}/hero`} alt={`${cs.name}: product overview`} eager />
@@ -40,6 +43,7 @@ const dir = `images/case-studies/${cs.slug}`;
 </Base>
 
 <style>
+  .visit { margin-top: calc(-1 * clamp(16px, 10px + 2vw, 48px)); padding-bottom: clamp(32px, 20px + 3vw, 64px); }
   .content { display: flex; flex-direction: column; gap: var(--gap-section); padding-bottom: var(--gap-section); }
   .cs-section__panels { display: flex; flex-direction: column; gap: clamp(16px, 8px + 2vw, 40px); }
   .quote { margin: 0; display: flex; flex-direction: column; gap: 32px; }

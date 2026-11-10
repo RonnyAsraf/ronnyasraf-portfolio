@@ -25,6 +25,7 @@ export interface CaseStudy {
   sections: Section[];
   quote?: { text: string; author: string };
   next: string; // slug of the next case study
+  url?: string; // live website, shown as a View site button
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -47,6 +48,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     // quote: { text: '', author: 'Liran Elaiof, Founder, Cover' }, // waiting for Liran's testimonial
     next: 'the-money-map',
+    url: 'https://www.coverpos.com/',
   },
   {
     slug: 'the-money-map',
@@ -88,6 +90,7 @@ export const caseStudies: CaseStudy[] = [
       { num: '09', title: 'Brand and website', caption: 'A calm, confident identity in black and fresh mint, carried from the logo through the product and the marketing website.', images: ['09'] },
     ],
     next: 'timelines',
+    url: 'https://www.velora-finance.com/',
   },
   {
     slug: 'timelines',
