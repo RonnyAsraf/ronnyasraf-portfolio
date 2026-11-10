@@ -1,0 +1,80 @@
+@import '@fontsource-variable/inter';
+
+/* Design tokens (from the Figma file). Fluid sizes run from 390px (mobile, live-site values) to 1920px (Figma desktop). */
+:root {
+  --ink: #0e0e0e;
+  --white: #ffffff;
+  --muted: #737373;
+  --card: #f2f2f2;
+  --panel: #eeeeee;
+  --line: #d9d9d9;
+
+  --font: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+
+  --pad: clamp(10px, 3.63px + 1.634vw, 35px);
+  --gap-section: clamp(64px, 39.5px + 6.27vw, 160px);
+  --radius-panel: clamp(12px, 9px + 0.78vw, 24px);
+
+  --fs-nav: clamp(12px, 11.49px + 0.131vw, 14px);
+  --fs-meta: clamp(10px, 9.49px + 0.131vw, 12px);
+  --fs-label: clamp(12px, 10.98px + 0.261vw, 16px);
+  --fs-card-title: clamp(20px, 18.98px + 0.261vw, 24px);
+  --fs-intro: clamp(14px, 11.45px + 0.654vw, 24px);
+  --fs-caption: clamp(15px, 13.73px + 0.327vw, 20px);
+  --fs-summary: clamp(20px, 14.9px + 1.307vw, 40px);
+  --fs-about: clamp(16px, 9.88px + 1.569vw, 40px);
+  --fs-service-title: clamp(20px, 14.9px + 1.307vw, 40px);
+  --fs-service-body: clamp(12px, 8.94px + 0.784vw, 24px);
+  --fs-quote: clamp(24px, 15.84px + 2.092vw, 56px);
+  --fs-home-h1: clamp(50px, 21.96px + 7.19vw, 160px);
+  --fs-case-h1: clamp(50px, 6.67px + 11.11vw, 220px);
+  --fs-next: clamp(48px, 19.45px + 7.32vw, 160px);
+
+  --shadow-screen: 35.5px 28.4px 42.6px rgba(112, 144, 176, 0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+p, h1, h2, h3, h4, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; }
+
+.wrap { padding-inline: var(--pad); }
+.upper { text-transform: uppercase; }
+.label { font-size: var(--fs-label); font-weight: 500; text-transform: uppercase; }
+.meta { font-size: var(--fs-meta); font-weight: 500; text-transform: uppercase; line-height: 1.4; }
+.link-underline { text-decoration: underline; text-underline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--ink); color: var(--white); padding: 12px 16px;
+}
+.skip-link:focus { left: 8px; top: 8px; }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.dark :focus-visible { outline-color: var(--white); }
+
+.pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 48px; padding: 0 21px; border-radius: 60px;
+  font-size: var(--fs-nav); font-weight: 500; text-transform: uppercase;
+  background: var(--ink); color: var(--white);
+  transition: opacity .2s ease;
+}
+.pill:hover { opacity: .8; }
+.pill--light { background: var(--white); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

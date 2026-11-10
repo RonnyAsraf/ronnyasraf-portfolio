@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import CardRow from '../components/CardRow.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { caseStudies } from '../data/caseStudies';
+import { uxuiProjects, allSites } from '../data/projects';
+import { site } from '../data/site';
+
+const homeSites = allSites.slice(0, 9);
+const services = [
+  { n: '(01)', title: 'UI UX', body: 'User Research and Analysis / Wireframing and Prototyping / User Interface Design / User Experience Testing / Responsive Design Solutions' },
+  { n: '(02)', title: 'Web design', body: 'Market research and competitor research / User Research / Wireframing / User Interface Design / Development in code or Wix Studio / Connection domain / Basic SEO' },
+  { n: '(03)', title: 'Graphic Design Services', body: 'Logo Design / Brand Guidelines / Collateral Design / Rebranding Services / Social media design / Presentations' },
+];
+---
+<Base>
+  <section class="hero wrap">
+    <h1 class="hero__title">One-woman creative studio turning visions into great digital experiences</h1>
+    <p class="hero__intro">
+      With over 6 years of experience across product, web, and graphic design, I personally lead every project from concept to launch. I focus on creating thoughtful digital experiences with meticulous attention to detail, ensuring full accountability throughout our collaboration.
+    </p>
+  </section>
+
+  <CardRow id="case-studies" label="Case studies">
+    {caseStudies.map((c) => (
+      <ProjectCard slug={c.slug} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
+    ))}
+  </CardRow>
+
+  <CardRow id="ux-ui" label="UX / UI projects">
+    {uxuiProjects.map((p) => (
+      <ProjectCard slug={p.slug} name={p.name} tags={p.tags} year={p.year} href={`/ui-ux/${p.slug}`} />
+    ))}
+  </CardRow>
+
+  <CardRow id="websites" label="Websites">
+    {homeSites.map((s) => (
+      <ProjectCard slug={s.slug} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />
+    ))}
+  </CardRow>
+  <div class="wrap all-sites"><a class="pill" href="/websites">All {allSites.length} websites →</a></div>
+
+  <section class="about dark wrap" id="about">
+    <h2 class="label">Hi there again! I'm Ronny.</h2>
+    <div class="about__body">
+      <p>I'm a multi-disciplinary designer with over 6 years of experience crafting minimal, clean, and effective digital experiences. From the initial strategy to the final launch, I manage every detail personally to ensure your vision is brought to life with precision and care.</p>
+      <p>For me, great design is about accountability and clear communication. I'm committed to delivering high-quality, consistent results - whether I'm leading a project solo or collaborating with a team of experts to bring complex ideas to life.</p>
+      <a class="pill pill--light" href={site.whatsapp} target="_blank" rel="noopener">Let's talk</a>
+    </div>
+  </section>
+
+  <section class="services dark wrap" id="services">
+    <h2 class="label">My services</h2>
+    <ul class="services__list">
+      {services.map((s) => (
+        <li>
+          <span class="services__n">{s.n}</span>
+          <h3 class="services__title">{s.title}</h3>
+          <p class="services__body">{s.body}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-top: clamp(60px, 45px + 3.9vw, 100px);
+    padding-bottom: clamp(80px, 72px + 2vw, 100px);
+    display: grid; grid-template-columns: repeat(12, 1fr); row-gap: 32px;
+  }
+  .hero__title {
+    grid-column: 3 / span 8;
+    font-size: var(--fs-home-h1); font-weight: 500; line-height: .9; letter-spacing: -0.04em;
+    max-width: 12ch;
+  }
+  .hero__intro {
+    grid-column: 8 / span 5;
+    font-size: var(--fs-intro); line-height: 1.42; letter-spacing: -0.02em;
+    max-width: 646px;
+  }
+
+  .all-sites { margin-top: calc(-1 * clamp(24px, 10px + 3vw, 60px)); padding-bottom: clamp(64px, 40px + 6vw, 140px); }
+
+  .dark { background: var(--ink); color: var(--white); }
+  .about {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px;
+    padding-top: clamp(64px, 50px + 3.6vw, 120px); padding-bottom: clamp(64px, 50px + 3.6vw, 120px);
+  }
+  .about .label { font-size: var(--fs-nav); }
+  .about__body { display: flex; flex-direction: column; gap: 40px; align-items: flex-start; max-width: 1213px; }
+  .about__body p { font-size: var(--fs-about); line-height: 1.2; letter-spacing: -0.04em; }
+
+  .services { padding-top: clamp(40px, 30px + 2.6vw, 80px); padding-bottom: clamp(64px, 50px + 3.6vw, 120px); }
+  .services .label { font-size: var(--fs-nav); margin-bottom: 48px; }
+  .services__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px; }
+  .services__n { font-size: var(--fs-nav); display: block; margin-bottom: 19px; }
+  .services__title { font-size: var(--fs-service-title); font-weight: 400; margin-bottom: 21px; letter-spacing: -0.02em; }
+  .services__body { font-size: var(--fs-service-body); line-height: 1.33; letter-spacing: -0.04em; }
+
+  @media (max-width: 900px) {
+    .hero__title { grid-column: 1 / -1; }
+    .hero__intro { grid-column: 4 / -1; }
+    .about { grid-template-columns: 1fr; gap: 24px; }
+    .services__list { grid-template-columns: 1fr; gap: 32px; }
+    .services__list li { display: grid; grid-template-columns: 42px 1fr; column-gap: 0; }
+    .services__n { grid-row: span 2; margin: 0; font-size: 16px; }
+    .services__title { margin-bottom: 8px; }
+  }
+</style>

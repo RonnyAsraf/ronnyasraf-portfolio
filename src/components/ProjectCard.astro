@@ -1,0 +1,47 @@
+---
+import { findImage } from '../lib/img';
+
+interface Props {
+  slug: string; // card image: public/images/cards/<slug>.*
+  name: string;
+  tags: string;
+  year: string;
+  href?: string; // internal page
+  url?: string; // external live site
+}
+const { slug, name, tags, year, href, url } = Astro.props;
+const img = findImage(`images/cards/${slug}`);
+const primary = href ?? url;
+const external = !href && !!url;
+---
+<article class="card">
+  <a class="card__media" href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} tabindex="-1" aria-hidden="true">
+    {img
+      ? <img src={img} alt="" loading="lazy" decoding="async" width="590" height="508" />
+      : <span class="card__placeholder">{name}</span>}
+  </a>
+  <div class="card__info">
+    <div class="card__meta meta"><span>{tags}</span><span>{year}</span></div>
+    <h3 class="card__title"><a href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{name}</a></h3>
+    <div class="card__links meta">
+      {href && <a class="link-underline" href={href}>View project</a>}
+      {url && <a class="link-underline" href={url} target="_blank" rel="noopener">Visit site<span class="sr-only"> (opens in a new tab)</span></a>}
+    </div>
+  </div>
+</article>
+
+<style>
+  .card { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .card__media {
+    display: grid; place-items: center; aspect-ratio: 590 / 508; overflow: hidden;
+    background: var(--card);
+  }
+  .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .card:hover .card__media img { transform: scale(1.03); }
+  .card__placeholder { font-size: var(--fs-label); color: var(--muted); }
+  .card__info { display: flex; flex-direction: column; gap: 8px; }
+  .card__meta { display: flex; justify-content: space-between; gap: 16px; }
+  .card__title { font-size: var(--fs-card-title); font-weight: 400; line-height: 1.4; }
+  .card__links { display: flex; justify-content: space-between; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>

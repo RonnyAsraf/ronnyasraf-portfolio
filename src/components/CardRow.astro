@@ -1,0 +1,74 @@
+---
+/** A labelled row of cards: horizontal carousel with arrows on desktop, stacked list on mobile (as on the live site). */
+interface Props { id?: string; label: string; }
+const { id, label } = Astro.props;
+---
+<section class="row" id={id} aria-label={label}>
+  <div class="row__head wrap">
+    <h2 class="label">{label}</h2>
+    <div class="row__arrows">
+      <button class="row__arrow" data-dir="-1" aria-label={`Previous ${label}`}>←</button>
+      <button class="row__arrow" data-dir="1" aria-label={`Next ${label}`}>→</button>
+    </div>
+  </div>
+  <div class="row__track wrap">
+    <slot />
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.row').forEach((row) => {
+    const track = row.querySelector<HTMLElement>('.row__track');
+    const [prev, next] = row.querySelectorAll<HTMLButtonElement>('.row__arrow');
+    if (!track || !prev || !next) return;
+    const update = () => {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      row.classList.toggle('row--static', track.scrollWidth <= track.clientWidth + 2);
+    };
+    row.querySelectorAll<HTMLButtonElement>('.row__arrow').forEach((b) =>
+      b.addEventListener('click', () => {
+        const card = track.firstElementChild as HTMLElement | null;
+        const step = card ? card.offsetWidth + parseFloat(getComputedStyle(track).columnGap || '40') : track.clientWidth;
+        track.scrollBy({ left: Number(b.dataset.dir) * step, behavior: 'smooth' });
+      })
+    );
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+</script>
+
+<style>
+  .row { padding-bottom: clamp(48px, 30px + 4.6vw, 100px); }
+  .row__head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-block: clamp(24px, 19px + 1.3vw, 40px);
+  }
+  .row__arrows { display: flex; gap: 10px; }
+  .row__arrow {
+    width: 48px; height: 48px; border-radius: 60px; border: 1px solid var(--ink);
+    background: none; cursor: pointer; font-size: 16px; transition: background .2s, color .2s;
+  }
+  .row__arrow:hover:not(:disabled) { background: var(--ink); color: var(--white); }
+  .row__arrow:disabled { opacity: .3; cursor: default; }
+  .row--static .row__arrows { visibility: hidden; }
+
+  .row__track {
+    display: grid; grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 2 * 40px) / 3);
+    column-gap: 40px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad);
+    scrollbar-width: none;
+  }
+  .row__track::-webkit-scrollbar { display: none; }
+  .row__track > :global(*) { scroll-snap-align: start; }
+
+  @media (max-width: 900px) and (min-width: 701px) {
+    .row__track { grid-auto-columns: calc((100% - 24px) / 2); column-gap: 24px; }
+  }
+  @media (max-width: 700px) {
+    .row__arrows { display: none; }
+    .row__track { grid-auto-flow: row; grid-auto-columns: auto; row-gap: 40px; overflow: visible; }
+  }
+</style>
