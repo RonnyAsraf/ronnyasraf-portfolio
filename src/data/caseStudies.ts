@@ -57,7 +57,7 @@ export const caseStudies: CaseStudy[] = [
     year: '2026',
     credits: ['Guy Natan & Mor Yogev\n2026', 'Sole designer\nProduct design & branding'],
     summary:
-      'Sole designer of The Money Map, a mobile app by financial expert Guy Natan and economics TV host Mor Yogev that makes personal finance approachable for everyone. It turns a stressful subject into a 12-day guided journey: one short video and one small task a day. I designed the product and the brand identity end to end. Now in its third pilot, ahead of launch.',
+      'Sole designer of The Money Map, a mobile app by a leading financial expert and an economics TV host that makes personal finance approachable for everyone. It turns a stressful subject into a 12-day guided journey: one short video and one small task a day. I designed the product and the brand identity end to end. Now in its third pilot, ahead of launch.',
     sections: [
       { num: '01', title: 'Twelve days, one map', caption: 'Each day unlocks a single task. The home screen shows exactly where you are on the journey, and a home-screen widget brings you back tomorrow.', images: ['01'] },
       { num: '02', title: 'Learn, then do', caption: 'Every day pairs a short video from Guy and Mor with one practical task, broken into small steps so it never feels like paperwork.', images: ['02'] },
