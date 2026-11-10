@@ -112,4 +112,7 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
+/** Pages go live one at a time, after approval. */
+export const RELEASED_CASE_STUDIES = ['cover'];
+
 export const getCaseStudy = (slug: string) => caseStudies.find((c) => c.slug === slug)!;

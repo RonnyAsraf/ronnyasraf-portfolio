@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import CaseHero from '../../components/CaseHero.astro';
+import Panel from '../../components/Panel.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import NextProject from '../../components/NextProject.astro';
+import { caseStudies, getCaseStudy, RELEASED_CASE_STUDIES, type CaseStudy } from '../../data/caseStudies';
+
+export function getStaticPaths() {
+  return caseStudies.filter((c) => RELEASED_CASE_STUDIES.includes(c.slug)).map((c) => ({ params: { slug: c.slug }, props: { cs: c } }));
+}
+const { cs } = Astro.props as { cs: CaseStudy };
+const next = getCaseStudy(cs.next);
+const dir = `images/case-studies/${cs.slug}`;
+---
+<Base title={cs.name} description={cs.summary} image={`/${dir}/hero.png`}>
+  <CaseHero title={cs.title} credits={cs.credits} summary={cs.summary} />
+
+  <div class="content wrap">
+    <Panel base={`${dir}/hero`} alt={`${cs.name}: product overview`} eager />
+
+    {cs.sections.map((s) => (
+      <section class="cs-section">
+        <div class="cs-section__panels">
+          {s.images.map((img) => <Panel base={`${dir}/${img}`} alt={`${cs.name}: ${s.title}`} />)}
+        </div>
+        <SectionLabel num={s.num} title={s.title} caption={s.caption} />
+      </section>
+    ))}
+
+    {cs.quote && (
+      <blockquote class="quote">
+        <p>“{cs.quote.text}”</p>
+        <cite>{cs.quote.author}</cite>
+      </blockquote>
+    )}
+
+    <NextProject href={`/case-studies/${next.slug}`} title={next.title.replace(/\n/g, ' ')} />
+  </div>
+</Base>
+
+<style>
+  .content { display: flex; flex-direction: column; gap: var(--gap-section); padding-bottom: var(--gap-section); }
+  .cs-section__panels { display: flex; flex-direction: column; gap: clamp(16px, 8px + 2vw, 40px); }
+  .quote { margin: 0; display: flex; flex-direction: column; gap: 32px; }
+  .quote p { font-size: var(--fs-quote); line-height: 1.12; letter-spacing: -0.015em; max-width: 1500px; }
+  .quote cite { font-style: normal; font-size: var(--fs-meta); text-transform: uppercase; color: var(--muted); }
+</style>

@@ -1,0 +1,22 @@
+---
+/** A full-width visual panel exported from Figma (screens already on their grey background). Shows a placeholder until the file exists. */
+import { findImage } from '../lib/img';
+interface Props { base: string; alt: string; ratio?: string; eager?: boolean; }
+const { base, alt, ratio = '1850 / 1100', eager = false } = Astro.props;
+const src = findImage(base);
+const isVideo = src?.endsWith('.mp4');
+---
+<figure class="panel" style={src ? undefined : `aspect-ratio:${ratio}`}>
+  {src && isVideo && <video src={src} autoplay muted loop playsinline aria-label={alt}></video>}
+  {src && !isVideo && <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />}
+  {!src && <span class="panel__ph">{base.split('/').slice(-2).join(' / ')}</span>}
+</figure>
+
+<style>
+  .panel {
+    margin: 0; width: 100%; overflow: hidden; border-radius: var(--radius-panel);
+    background: var(--panel); display: grid; place-items: center;
+  }
+  .panel img, .panel video { width: 100%; height: auto; display: block; }
+  .panel__ph { font-size: var(--fs-meta); text-transform: uppercase; color: var(--muted); }
+</style>

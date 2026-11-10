@@ -1,0 +1,36 @@
+---
+/** Split hero used by case studies and project pages: big lowercase title + credits on the left, summary on the right. */
+interface Props { title: string; credits: [string, string]; summary: string; size?: 'xl' | 'auto'; }
+const { title, credits, summary } = Astro.props;
+// Long names get a smaller title so they never overflow (matches the Figma rule)
+const longest = Math.max(...title.split('\n').map((l) => l.length));
+const scale = Math.min(1, 9 / Math.max(longest, 1));
+---
+<section class="chero wrap">
+  <div class="chero__left">
+    <h1 class="chero__title" style={`--scale:${scale.toFixed(3)}`} set:html={title.replace(/\n/g, '<br>')} />
+    <dl class="chero__credits">
+      {credits.map((c) => <div><dd set:html={c.replace(/\n/g, '<br>')} /></div>)}
+    </dl>
+  </div>
+  <p class="chero__summary">{summary}</p>
+</section>
+
+<style>
+  .chero {
+    display: grid; grid-template-columns: 1fr minmax(0, 1000px); gap: 80px; align-items: end;
+    padding-top: clamp(64px, 44px + 5.2vw, 140px); padding-bottom: clamp(48px, 35px + 3.4vw, 100px);
+  }
+  .chero__left { display: flex; flex-direction: column; gap: clamp(24px, 15px + 2.4vw, 56px); min-width: 0; }
+  .chero__title {
+    font-size: calc(var(--fs-case-h1) * var(--scale, 1));
+    font-weight: 500; line-height: .9; letter-spacing: -0.05em;
+  }
+  .chero__credits { display: flex; gap: clamp(32px, 12px + 5.2vw, 120px); margin: 0; }
+  .chero__credits dd { margin: 0; font-size: var(--fs-meta); text-transform: uppercase; line-height: 1.4; }
+  .chero__summary { font-size: var(--fs-summary); line-height: 1.18; letter-spacing: -0.015em; }
+
+  @media (max-width: 1000px) {
+    .chero { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  }
+</style>
