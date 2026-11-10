@@ -1,5 +1,6 @@
 ---
 import { findImage } from '../lib/img';
+import { cardColors } from '../data/cardColors';
 
 interface Props {
   image: string; // card image base path, e.g. images/cards/case-studies/cover
@@ -11,11 +12,12 @@ interface Props {
 }
 const { image, name, tags, year, href, url } = Astro.props;
 const img = findImage(image);
+const tint = cardColors[image];
 const primary = href ?? url;
 const external = !href && !!url;
 ---
 <article class="card">
-  <a class="card__media" href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} tabindex="-1" aria-hidden="true">
+  <a class="card__media" style={tint ? `--tint:${tint}` : undefined} href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} tabindex="-1" aria-hidden="true">
     {img
       ? <img src={img} alt="" loading="lazy" decoding="async" width="590" height="508" />
       : <span class="card__placeholder">{name}</span>}
@@ -35,7 +37,9 @@ const external = !href && !!url;
   .card__media {
     display: grid; place-items: center; aspect-ratio: 590 / 508; overflow: hidden; border-radius: var(--radius-panel);
     background: var(--card);
+    transition: background-color .45s ease;
   }
+  .card:hover .card__media, .card:focus-within .card__media { background: var(--tint, var(--card)); }
   .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
   .card:hover .card__media img { transform: scale(1.03); }
   .card__placeholder { font-size: var(--fs-label); color: var(--muted); }
