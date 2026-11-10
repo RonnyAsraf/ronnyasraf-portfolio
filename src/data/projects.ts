@@ -38,7 +38,7 @@ export interface Site { slug: string; name: string; type: string; year: string; 
 
 export const allSites: Site[] = [
   { slug: 'the-morning-club', name: 'The Morning Club', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.morningclubisr.com/' },
-  { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/', page: '/case-studies/cover' },
+  { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/' },
   { slug: 'auto-fit', name: 'Auto-Fit', type: 'Landing Page, Code', year: '2026', url: 'https://auto-fit.co.il/' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', type: 'Website, Wix Studio', year: '2025', url: 'https://www.otto7senses.com/', page: '/websites/otto-seven-senses' },
   { slug: 'petra', name: 'Petra', type: 'Template, Wix Studio', year: '2026', url: 'https://www.wix.com/marketplace/template/e16c9ada-0910-4839-80ec-5176eedac7a4' },
