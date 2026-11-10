@@ -1,14 +1,16 @@
 ---
 /** A full-width visual panel exported from Figma (screens already on their grey background). Shows a placeholder until the file exists. */
-import { findImage } from '../lib/img';
+import { findImage, srcsetFor } from '../lib/img';
 interface Props { base: string; alt: string; ratio?: string; eager?: boolean; inset?: boolean; }
 const { base, alt, ratio = '1850 / 1100', eager = false, inset = false } = Astro.props;
 const src = findImage(base);
 const isVideo = src?.endsWith('.mp4');
+const srcset = src && !isVideo && !inset ? srcsetFor(src, 3700) : undefined;
+const sizes = '(max-width: 1920px) 96vw, 1850px';
 ---
 <figure class:list={["panel", { "panel--inset": inset && src }]} style={src && !inset ? undefined : `aspect-ratio:${ratio}`}>
   {src && isVideo && <video src={src} autoplay muted loop playsinline aria-label={alt}></video>}
-  {src && !isVideo && <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />}
+  {src && !isVideo && <img src={src} srcset={srcset} sizes={srcset ? sizes : undefined} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />}
   {!src && <span class="panel__ph">{base.split('/').slice(-2).join(' / ')}</span>}
 </figure>
 
