@@ -8,6 +8,7 @@ export const cardColors: Record<string, string> = {
   "images/cards/ui-ux/greenclick": "#eaf6d5",
   "images/cards/ui-ux/lerni": "#d8f3e1",
   "images/cards/ui-ux/memorit-co": "#dad5f6",
+  "images/cards/ui-ux/oh-hi": "#d6ecef",
   "images/cards/ui-ux/rge-onboarding": "#f6e0d5",
   "images/cards/ui-ux/sense": "#d8d7f4",
   "images/cards/websites/auto-fit": "#dfddee",
