@@ -21,7 +21,7 @@ const services = [
     </p>
   </section>
 
-  <CardRow id="case-studies" label="Case studies">
+  <CardRow id="case-studies" label="Case studies" stackOnMobile>
     {caseStudies.map((c) => (
       <ProjectCard slug={c.slug} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
     ))}

@@ -1,9 +1,9 @@
 ---
 /** A labelled row of cards: horizontal carousel with arrows on desktop, stacked list on mobile (as on the live site). */
-interface Props { id?: string; label: string; }
-const { id, label } = Astro.props;
+interface Props { id?: string; label: string; stackOnMobile?: boolean; }
+const { id, label, stackOnMobile = false } = Astro.props;
 ---
-<section class="row" id={id} aria-label={label}>
+<section class={`row ${stackOnMobile ? 'row--stack' : ''}`} id={id} aria-label={label}>
   <div class="row__head wrap">
     <h2 class="label">{label}</h2>
     <div class="row__arrows">
@@ -14,16 +14,23 @@ const { id, label } = Astro.props;
   <div class="row__track wrap">
     <slot />
   </div>
+  <div class="row__arrows row__arrows--bottom wrap">
+    <button class="row__arrow" data-dir="-1" aria-label={`Previous ${label}`}>←</button>
+    <button class="row__arrow" data-dir="1" aria-label={`Next ${label}`}>→</button>
+  </div>
 </section>
 
 <script>
   document.querySelectorAll<HTMLElement>('.row').forEach((row) => {
     const track = row.querySelector<HTMLElement>('.row__track');
-    const [prev, next] = row.querySelectorAll<HTMLButtonElement>('.row__arrow');
-    if (!track || !prev || !next) return;
+    const prevs = row.querySelectorAll<HTMLButtonElement>('.row__arrow[data-dir="-1"]');
+    const nexts = row.querySelectorAll<HTMLButtonElement>('.row__arrow[data-dir="1"]');
+    if (!track) return;
     const update = () => {
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      const atStart = track.scrollLeft <= 2;
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      prevs.forEach((b) => (b.disabled = atStart));
+      nexts.forEach((b) => (b.disabled = atEnd));
       row.classList.toggle('row--static', track.scrollWidth <= track.clientWidth + 2);
     };
     row.querySelectorAll<HTMLButtonElement>('.row__arrow').forEach((b) =>
@@ -67,8 +74,15 @@ const { id, label } = Astro.props;
   @media (max-width: 900px) and (min-width: 701px) {
     .row__track { grid-auto-columns: calc((100% - 24px) / 2); column-gap: 24px; }
   }
+  .row__arrows--bottom { display: none; }
+
   @media (max-width: 700px) {
-    .row__arrows { display: none; }
-    .row__track { grid-auto-flow: row; grid-auto-columns: auto; row-gap: 40px; overflow: visible; }
+    /* One project at a time, arrows under the card */
+    .row__head .row__arrows { display: none; }
+    .row__track { grid-auto-columns: 100%; column-gap: var(--pad); }
+    .row__arrows--bottom { display: flex; justify-content: flex-end; padding-top: 16px; }
+    /* Case studies: all stacked so every one is visible */
+    .row--stack .row__track { grid-auto-flow: row; grid-auto-columns: auto; row-gap: 40px; overflow: visible; }
+    .row--stack .row__arrows--bottom { display: none; }
   }
 </style>
