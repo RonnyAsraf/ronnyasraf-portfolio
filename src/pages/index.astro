@@ -22,11 +22,14 @@ const services = [
     </p>
   </section>
 
-  <CardRow id="case-studies" label="Case studies" stackOnMobile>
-    {caseStudies.map((c) => (
-      <ProjectCard image={`images/cards/case-studies/${c.slug}`} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
-    ))}
-  </CardRow>
+  <section class="featured" id="case-studies" aria-label="Case studies">
+    <div class="featured__head wrap"><h2 class="label">Case studies</h2></div>
+    <div class="featured__grid row__track wrap">
+      {caseStudies.map((c) => (
+        <ProjectCard featured image={`images/cards/case-studies-featured/${c.slug}`} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
+      ))}
+    </div>
+  </section>
 
   <CardRow id="ux-ui" label="UX / UI projects">
     {homeUxui.map((p) => (
@@ -64,6 +67,10 @@ const services = [
 </Base>
 
 <style>
+  .featured { padding-bottom: clamp(48px, 30px + 4.6vw, 100px); }
+  .featured__head { padding-block: clamp(24px, 19px + 1.3vw, 40px); }
+  .featured__grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; row-gap: clamp(48px, 36px + 2vw, 80px); }
+  @media (max-width: 700px) { .featured__grid { grid-template-columns: 1fr; row-gap: 40px; } }
   .hero {
     padding-top: clamp(60px, 45px + 3.9vw, 100px);
     padding-bottom: clamp(80px, 72px + 2vw, 100px);

@@ -1,5 +1,9 @@
 /** Light hover tint per card, auto-extracted from each card image. Edit any value by hand. */
 export const cardColors: Record<string, string> = {
+  "images/cards/case-studies-featured/cover": "#dad5f6",
+  "images/cards/case-studies-featured/the-money-map": "#ded5f6",
+  "images/cards/case-studies-featured/velora": "#d5f6f0",
+  "images/cards/case-studies-featured/timelines": "#d7f1f4",
   "images/cards/case-studies/cover": "#dad5f6",
   "images/cards/case-studies/the-money-map": "#ded5f6",
   "images/cards/case-studies/timelines": "#d7f1f4",
