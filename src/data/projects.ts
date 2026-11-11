@@ -72,3 +72,7 @@ export const allSites: Site[] = [
   { slug: 'haetz-herzeliya', name: 'Haetz Herzeliya', type: 'Website, Wix Studio', year: '2025', url: 'http://www.haetz-herzelia.co.il' },
   { slug: 'urbanica', name: 'Urbanica', type: 'Website, Shopify', year: '2024', url: 'http://urbanicafurniture.com' },
 ];
+
+/** Card order used on the home page and in the "Other ..." carousels at the bottom of project pages. */
+export const HOME_UXUI = ['bluex-ai', 'sense', 'lerni', 'rge-onboarding', 'greenclick', 'memorit-co', 'oh-hi'];
+export const HOME_SITES = ['auto-fit', 'cover-site', 'the-morning-club', 'otto-seven-senses', 'the-code-of-creation', 'ganit-park', 'go-power', 'greenclick', 'qombat'];

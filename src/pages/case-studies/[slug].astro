@@ -3,14 +3,13 @@ import Base from '../../layouts/Base.astro';
 import CaseHero from '../../components/CaseHero.astro';
 import Panel from '../../components/Panel.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
-import NextProject from '../../components/NextProject.astro';
-import { caseStudies, getCaseStudy, RELEASED_CASE_STUDIES, type CaseStudy } from '../../data/caseStudies';
+import OtherProjects from '../../components/OtherProjects.astro';
+import { caseStudies, RELEASED_CASE_STUDIES, type CaseStudy } from '../../data/caseStudies';
 
 export function getStaticPaths() {
   return caseStudies.filter((c) => RELEASED_CASE_STUDIES.includes(c.slug)).map((c) => ({ params: { slug: c.slug }, props: { cs: c } }));
 }
 const { cs } = Astro.props as { cs: CaseStudy };
-const next = getCaseStudy(cs.next);
 const dir = `images/case-studies/${cs.slug}`;
 ---
 <Base title={cs.name} description={cs.summary} image={`/${dir}/hero.webp`}>
@@ -35,8 +34,9 @@ const dir = `images/case-studies/${cs.slug}`;
       </blockquote>
     )}
 
-    <NextProject href={`/case-studies/${next.slug}`} title={next.title.replace(/\n/g, ' ')} />
   </div>
+
+  <OtherProjects kind="case-studies" current={cs.slug} />
 </Base>
 
 <style>

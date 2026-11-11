@@ -1,0 +1,24 @@
+---
+/** "Other ..." carousel at the bottom of every project page: the same cards as on the home page, minus the project being viewed. */
+import CardRow from './CardRow.astro';
+import ProjectCard from './ProjectCard.astro';
+import { caseStudies } from '../data/caseStudies';
+import { uxuiProjects, allSites, HOME_UXUI, HOME_SITES } from '../data/projects';
+
+interface Props { kind: 'case-studies' | 'ui-ux' | 'websites'; current: string; }
+const { kind, current } = Astro.props;
+
+const cards =
+  kind === 'case-studies'
+    ? caseStudies.filter((c) => c.slug !== current).map((c) => ({ image: `images/cards/case-studies/${c.slug}`, name: c.name, tags: c.tags, year: c.year, href: `/case-studies/${c.slug}`, url: undefined }))
+    : kind === 'ui-ux'
+      ? HOME_UXUI.filter((s) => s !== current).map((s) => uxuiProjects.find((p) => p.slug === s)!).map((p) => ({ image: `images/cards/ui-ux/${p.slug}`, name: p.name, tags: p.tags, year: p.year, href: `/ui-ux/${p.slug}`, url: undefined }))
+      : HOME_SITES.filter((s) => s !== current).map((s) => allSites.find((x) => x.slug === s)!).map((x) => ({ image: `images/cards/websites/${x.slug}`, name: x.name, tags: x.type, year: x.year, href: x.page, url: x.url }));
+
+const label = { 'case-studies': 'Other case studies', 'ui-ux': 'Other UX / UI projects', websites: 'Other websites' }[kind];
+---
+<div class="other">
+  <CardRow label={label}>
+    {cards.map((c) => <ProjectCard image={c.image} name={c.name} tags={c.tags} year={c.year} href={c.href} url={c.url} />)}
+  </CardRow>
+</div>
