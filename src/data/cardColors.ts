@@ -40,6 +40,6 @@ export const cardColors: Record<string, string> = {
   "images/cards/websites/terrasafe": "#d7d6f5",
   "images/cards/websites/the-code-of-creation": "#efe2dc",
   "images/cards/websites/the-morning-club": "#f6e9d5",
-  "images/cards/websites/urbanica": "#efe4dc",
+  "images/cards/websites/urbanica": "#efdcdc",
   "images/cards/websites/velora-site": "#d5f6f0"
 };
