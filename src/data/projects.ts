@@ -64,7 +64,6 @@ export const allSites: Site[] = [
   { slug: 'ican', name: 'ICAN', type: 'Website, Wix Studio', year: '2025', url: 'https://www.icanstrategy.com/' },
   { slug: 'roots-studio', name: "Root's Studio", type: 'Website, Wix Studio', year: '2023', url: 'http://ronnyasraf.wixstudio.com/galwuntch' },
   { slug: 'streetwise', name: 'StreetWise', type: 'Landing Page, Wix Studio', year: '2025', url: 'http://www.streetwisebi.com' },
-  { slug: 'triplecyber', name: 'TripleCyber', type: 'Website, Wix Studio', year: '2025', url: 'https://www.triplecyberinfosec.com/' },
   { slug: 'noam-physiotherapy', name: 'Noam Physiotherapy', type: 'Website, Wix', year: '2025', url: 'https://www.noamphysio.co.il/' },
   { slug: 'orly-assaraf', name: 'Orly Assaraf', type: 'Website, Wix Studio', year: '2024', url: 'http://www.orlya.co.il' },
   { slug: 'emris-pharma', name: 'Emris Pharma', type: 'Website, Elementor', year: '2024', url: 'http://www.emris-pharma.com' },
