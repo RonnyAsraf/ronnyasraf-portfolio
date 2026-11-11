@@ -34,5 +34,21 @@ const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/i
       <slot />
     </main>
     <Footer />
+    <script>
+      // Cards rise in as their row scrolls into view, one after the other.
+      const rows = document.querySelectorAll<HTMLElement>('.row__track');
+      if (rows.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reveal-on');
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            [...e.target.children].forEach((c, i) => (c as HTMLElement).style.setProperty('--d', `${Math.min(i, 4) * 90}ms`));
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          });
+        }, { rootMargin: '0px 0px -12% 0px' });
+        rows.forEach((r) => io.observe(r));
+      }
+    </script>
   </body>
 </html>

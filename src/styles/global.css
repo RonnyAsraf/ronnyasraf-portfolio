@@ -74,6 +74,14 @@ button { font: inherit; color: inherit; }
 .pill:hover { opacity: .8; }
 .pill--light { background: var(--white); color: var(--ink); }
 
+.reveal-on .row__track > * {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity .8s cubic-bezier(.2,.7,.2,1) var(--d, 0ms), transform .8s cubic-bezier(.2,.7,.2,1) var(--d, 0ms);
+}
+.reveal-on .row__track.is-in > * { opacity: 1; transform: none; }
+/* room inside the scroll box so the rising cards are not clipped */
+.reveal-on .row__track { padding-bottom: 44px; margin-bottom: -44px; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
