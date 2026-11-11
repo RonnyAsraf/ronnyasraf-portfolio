@@ -40,12 +40,11 @@ import { nav, site } from '../data/site';
     align-items: center;
     padding-block: 20px;
     font-size: var(--fs-nav);
-    text-transform: uppercase;
   }
-  .nav__name { font-weight: 500; }
+  .nav__name { font-weight: 500; text-transform: uppercase; }
   .nav__links ul { display: flex; gap: 40px; }
   .nav__links a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .nav__cta { justify-self: end; }
+  .nav__cta { justify-self: end; text-transform: none; }
   .nav__toggle, .nav__mobile { display: none; }
 
   @media (max-width: 900px) {

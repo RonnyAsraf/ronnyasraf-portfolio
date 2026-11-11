@@ -17,5 +17,5 @@ export const nav = [
   { label: 'Projects', href: '/#case-studies' },
   { label: 'Websites', href: '/websites' },
   { label: 'About', href: '/#about' },
-  { label: 'My Services', href: '/#services' },
+  { label: 'My services', href: '/#services' },
 ];
