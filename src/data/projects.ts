@@ -26,6 +26,8 @@ export const uxuiProjects: Project[] = [
 ];
 
 export const websiteProjects: Project[] = [
+  { slug: 'auto-fit', name: 'AutoFit', title: 'autofit', tags: 'Website, Code', year: '2026', credits: ['Website\n2026', 'Design & development\nCode'], summary: 'A management platform for personal trainers, studios and gyms, with client management, workout and nutrition plans, automated billing and a branded app.', url: 'https://auto-fit.co.il/' },
+  { slug: 'cover-site', name: 'Cover', title: 'cover', tags: 'Website, Wix Studio', year: '2026', credits: ['Website\n2026', 'Design & development\nWix Studio'], summary: 'The marketing site for an all-in-one restaurant system. It explains the product to restaurant owners and books intro meetings.', url: 'https://www.coverpos.com/' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', title: 'otto seven senses', tags: 'Website, Wix Studio', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A boutique hotel of four suites in a 19th-century stone building in downtown Haifa, with an art gallery, a rooftop pool and a personal, art-focused stay.', url: 'https://www.otto7senses.com/' },
   { slug: 'ganit-park', name: 'Ganit Park', title: 'ganit park', tags: 'Website, Elementor', year: '2025', credits: ['Website\n2025', 'Website design\nElementor'], summary: 'A company that has been designing, making and installing playgrounds, outdoor fitness equipment and urban furniture for cities and developers since 1978.', url: 'https://www.ganit.co.il/' },
   { slug: 'greenclick', name: 'GreenClick', title: 'greenclick', tags: 'Website, Code', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A cloud distribution platform that lets cloud distributors, resellers and MSPs manage pricing, provisioning and billing for their whole reseller chain in one place.', url: 'https://greenclick.cloud/' },
@@ -38,8 +40,8 @@ export interface Site { slug: string; name: string; type: string; year: string; 
 
 export const allSites: Site[] = [
   { slug: 'the-morning-club', name: 'The Morning Club', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.morningclubisr.com/' },
-  { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/' },
-  { slug: 'auto-fit', name: 'Auto-Fit', type: 'Landing Page, Code', year: '2026', url: 'https://auto-fit.co.il/' },
+  { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/', page: '/websites/cover-site' },
+  { slug: 'auto-fit', name: 'AutoFit', type: 'Landing Page, Code', year: '2026', url: 'https://auto-fit.co.il/', page: '/websites/auto-fit' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', type: 'Website, Wix Studio', year: '2025', url: 'https://www.otto7senses.com/', page: '/websites/otto-seven-senses' },
   { slug: 'petra', name: 'Petra', type: 'Template, Wix Studio', year: '2026', url: 'https://www.wix.com/marketplace/template/e16c9ada-0910-4839-80ec-5176eedac7a4' },
   { slug: 'the-code-of-creation', name: 'The Code of Creation', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.karin360.com/' },
