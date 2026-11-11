@@ -1,11 +1,14 @@
 ---
+import { metaDescriptions } from '../data/meta';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
 
 interface Props { title?: string; description?: string; image?: string; }
-const { title, description = site.description, image = '/images/case-studies/cover/hero.webp' } = Astro.props;
+const { title, description: given, image = '/images/case-studies/cover/hero.webp' } = Astro.props;
+const pagePath = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const description = metaDescriptions[pagePath] ?? given ?? site.description;
 const fullTitle = title ? `${title} | ${site.name}` : site.title;
 const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
 ---

@@ -1,0 +1,26 @@
+/** Meta descriptions for search results, per page path (max ~155 characters so Google shows them whole). Pages not listed use their own summary. */
+export const metaDescriptions: Record<string, string> = {
+  "/case-studies/cover": "Case study: Cover, one operating system for restaurants. Ordering, POS, back office and scheduling merged into one product for tablet, mobile and desktop.",
+  "/case-studies/the-money-map": "Case study: The Money Map, a personal finance app built as a 12-day guided journey. Product design and brand identity by Ronny Asraf, sole designer.",
+  "/case-studies/velora": "Case study: Velora, a platform for financial advisors with a client app and AI insights. Brand, dashboard, app and website by Ronny Asraf, sole designer.",
+  "/case-studies/timelines": "Case study: Timelines, a kindergarten app for private parent albums used by 10,000+ monthly users. Brand, app, website and campaigns by Ronny Asraf.",
+  "/ui-ux/lerni": "Lerni, a teaching platform: branding, dashboard UX and UI and a landing page, designed by Ronny Asraf.",
+  "/ui-ux/bluex-ai": "bluex AI, an AI-powered marketing platform: dashboard UX and UI design by Ronny Asraf.",
+  "/ui-ux/sense": "Sense, a healthcare app for tracking emotional resilience: UX and UI design by Ronny Asraf.",
+  "/ui-ux/rge-onboarding": "RGE, an employee onboarding platform: dashboard, UX and UI design by Ronny Asraf.",
+  "/ui-ux/oh-hi": "OH-HI!, an events app for discovering meetups and connecting with members: UX design by Ronny Asraf.",
+  "/ui-ux/greenclick": "GreenClick, a cloud distribution platform: dashboard UX and UI design by Ronny Asraf.",
+  "/ui-ux/memorit-co": "Memorit.co, a games brand: branding, UX and UI, a landing page and social media design by Ronny Asraf.",
+  "/websites/auto-fit": "AutoFit website, a management platform for personal trainers and gyms. Designed and developed in code by Ronny Asraf.",
+  "/websites/cover-site": "Cover marketing website for an all-in-one restaurant system. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites/the-morning-club": "The Morning Club website, office food and kitchenette services. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites/the-code-of-creation": "The Code of Creation website, a holistic healing space in Tel Aviv. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites/otto-seven-senses": "Otto Seven Senses website, a boutique art hotel in Haifa. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites/ganit-park": "Ganit Park website, playgrounds and urban furniture since 1978. Website design by Ronny Asraf, developed in Elementor.",
+  "/websites/greenclick": "GreenClick website, a cloud distribution platform for resellers and MSPs. Designed and built by Ronny Asraf.",
+  "/websites/go-power": "Go Power online store for backup power and energy storage. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites/qombat": "Qombat website, a quantum security technology company. Designed and built in Wix Studio by Ronny Asraf.",
+  "/websites": "Websites designed and built by Ronny Asraf, from structure and design to development in code or Wix Studio and launch.",
+  "/privacy-policy": "How www.ronnyasraf.com handles visitor data: no cookies, cookieless visit statistics and hosting on Cloudflare.",
+  "/accessibility-statement": "Accessibility statement for www.ronnyasraf.com: the standard the site follows, what was done, known limitations and who to contact."
+};
