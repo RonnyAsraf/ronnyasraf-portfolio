@@ -74,4 +74,4 @@ export const allSites: Site[] = [
 
 /** Card order used on the home page and in the "Other ..." carousels at the bottom of project pages. */
 export const HOME_UXUI = ['bluex-ai', 'sense', 'lerni', 'rge-onboarding', 'greenclick', 'memorit-co', 'oh-hi'];
-export const HOME_SITES = ['auto-fit', 'cover-site', 'the-morning-club', 'otto-seven-senses', 'the-code-of-creation', 'ganit-park', 'go-power', 'greenclick', 'qombat'];
+export const HOME_SITES = ['auto-fit', 'cover-site', 'otto-seven-senses', 'the-code-of-creation', 'the-morning-club', 'ganit-park', 'go-power', 'greenclick', 'qombat'];
