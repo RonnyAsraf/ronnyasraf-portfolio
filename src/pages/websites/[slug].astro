@@ -3,8 +3,11 @@ import ProjectPage from '../../components/ProjectPage.astro';
 import { websiteProjects, type Project } from '../../data/projects';
 
 export function getStaticPaths() {
-  return websiteProjects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+  return websiteProjects.map((p, i) => {
+    const n = websiteProjects[(i + 1) % websiteProjects.length];
+    return { params: { slug: p.slug }, props: { project: p, next: { href: `/websites/${n.slug}`, title: n.title } } };
+  });
 }
-const { project } = Astro.props as { project: Project };
+const { project, next } = Astro.props as { project: Project; next: { href: string; title: string } };
 ---
-<ProjectPage project={project} dir={`images/websites/${project.slug}`} kind="websites" />
+<ProjectPage project={project} dir={`images/websites/${project.slug}`} kind="websites" next={next} />

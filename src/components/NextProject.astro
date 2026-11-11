@@ -1,0 +1,15 @@
+---
+interface Props { href: string; title: string; }
+const { href, title } = Astro.props;
+---
+<a class="next" href={href}>
+  <span class="next__label">Next project</span>
+  <span class="next__title">{title} <span aria-hidden="true">→</span></span>
+</a>
+
+<style>
+  .next { display: flex; flex-direction: column; gap: 24px; padding-top: 60px; border-top: 1px solid var(--line); }
+  .next__label { font-size: var(--fs-meta); font-weight: 500; text-transform: uppercase; color: var(--muted); }
+  .next__title { font-size: var(--fs-next); font-weight: 500; line-height: .95; letter-spacing: -0.05em; transition: opacity .2s; }
+  .next:hover .next__title { opacity: .6; }
+</style>
