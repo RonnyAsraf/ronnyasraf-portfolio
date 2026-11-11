@@ -30,13 +30,13 @@ export const websiteProjects: Project[] = [
   { slug: 'cover-site', name: 'Cover', title: 'cover', tags: 'Website, Wix Studio', year: '2026', credits: ['Website\n2026', 'Design & development\nWix Studio'], summary: 'The marketing site for an all-in-one restaurant system. It explains the product to restaurant owners and books intro meetings.', url: 'https://www.coverpos.com/' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', title: 'otto seven senses', tags: 'Website, Wix Studio', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A boutique hotel of four suites in a 19th-century stone building in downtown Haifa, with an art gallery, a rooftop pool and a personal, art-focused stay.', url: 'https://www.otto7senses.com/' },
   { slug: 'ganit-park', name: 'Ganit Park', title: 'ganit park', tags: 'Website, Elementor', year: '2025', credits: ['Website\n2025', 'Website design\nElementor'], summary: 'A company that has been designing, making and installing playgrounds, outdoor fitness equipment and urban furniture for cities and developers since 1978.', url: 'https://www.ganit.co.il/' },
-  { slug: 'greenclick', name: 'GreenClick', title: 'greenclick', tags: 'Website, Code', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A cloud distribution platform that lets cloud distributors, resellers and MSPs manage pricing, provisioning and billing for their whole reseller chain in one place.', url: 'https://greenclick.cloud/' },
+  { slug: 'greenclick', name: 'GreenClick', title: 'greenclick', tags: 'Website, Code', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A cloud distribution platform that lets cloud distributors, resellers and MSPs manage pricing, provisioning and billing for their whole reseller chain in one place.' },
   { slug: 'go-power', name: 'Go Power', title: 'go power', tags: 'E-commerce, Wix Studio', year: '2025', credits: ['E-commerce\n2025', 'Design & development\nWix Studio'], summary: 'An online store for backup power and energy storage, from portable power stations to home battery systems, for homes and businesses.', url: 'https://www.go-power.ai/' },
   { slug: 'qombat', name: 'Qombat', title: 'qombat', tags: 'Website, Wix Studio', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A quantum technology company that protects sensitive data and communications for governments, defense and critical infrastructure against future quantum threats.', url: 'http://www.qombat.ltd' },
 ];
 
 /** Every live site, as on the current Websites page. `page` links to an internal project page when one exists. */
-export interface Site { slug: string; name: string; type: string; year: string; url: string; page?: string; }
+export interface Site { slug: string; name: string; type: string; year: string; url?: string; page?: string; }
 
 export const allSites: Site[] = [
   { slug: 'the-morning-club', name: 'The Morning Club', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.morningclubisr.com/' },
@@ -52,7 +52,7 @@ export const allSites: Site[] = [
   { slug: 'rakafot-project', name: 'Rakafot Project', type: 'Landing Page, Wix Studio', year: '2025', url: 'https://www.mo-p.co.il/rakafot-project-landing-page' },
   { slug: 'velora-site', name: 'Velora', type: 'Website, Wix Studio', year: '2025', url: 'https://www.velora-finance.com/', page: '/case-studies/velora' },
   { slug: 'moshe-peretz', name: 'Moshe Peretz', type: 'Website, Wix Studio', year: '2025', url: 'https://www.mo-p.co.il/' },
-  { slug: 'greenclick', name: 'GreenClick', type: 'Website, Code', year: '2025', url: 'https://greenclick.cloud/', page: '/websites/greenclick' },
+  { slug: 'greenclick', name: 'GreenClick', type: 'Website, Code', year: '2025', page: '/websites/greenclick' },
   { slug: 'kami', name: 'Kami', type: 'E-commerce, Wix Studio', year: '2025', url: 'https://www.kami.hair/' },
   { slug: 'menasim', name: 'Menasim', type: 'Website, Wix Studio', year: '2025', url: 'https://www.menasim.org/' },
   { slug: 'go-fiber', name: 'Go Fiber', type: 'Website, Wix Studio', year: '2025', url: 'https://www.gofiber.ai/' },
