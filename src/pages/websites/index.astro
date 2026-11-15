@@ -8,7 +8,7 @@ const summary =
   'High-performing, responsive websites with a distinct visual identity. I lead every project personally, from strategy and site architecture through design, development and launch.';
 ---
 <Base title="Websites" description={summary}>
-  <CaseHero title="websites" credits={[`${allSites.length} live sites\n2023-26`, 'Design & development\nCode, Wix Studio, Elementor, Shopify']} summary={summary} />
+  <CaseHero title="websites" credits={['2023-26', 'Design & development\nCode, Wix Studio, Elementor, Shopify']} summary={summary} />
   <section class="grid wrap" aria-label="All websites">
     {allSites.map((s) => <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />)}
   </section>
