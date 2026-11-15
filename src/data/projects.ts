@@ -43,8 +43,8 @@ export interface Site { slug: string; name: string; type: string; year: string; 
 export const allSites: Site[] = [
   { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/', page: '/websites/cover-site' },
   { slug: 'auto-fit', name: 'AutoFit', type: 'Landing Page, Code', year: '2026', url: 'https://auto-fit.co.il/', page: '/websites/auto-fit' },
-  { slug: 'the-morning-club', name: 'The Morning Club', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.morningclubisr.com/', page: '/websites/the-morning-club' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', type: 'Website, Wix Studio', year: '2025', url: 'https://www.otto7senses.com/', page: '/websites/otto-seven-senses' },
+  { slug: 'the-morning-club', name: 'The Morning Club', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.morningclubisr.com/', page: '/websites/the-morning-club' },
   { slug: 'petra', name: 'Petra', type: 'Template, Wix Studio', year: '2026', url: 'https://www.wix.com/marketplace/template/e16c9ada-0910-4839-80ec-5176eedac7a4' },
   { slug: 'the-code-of-creation', name: 'The Code of Creation', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.karin360.com/', page: '/websites/the-code-of-creation' },
   { slug: 'neho-design', name: 'Neho Design', type: 'Landing Page, Code', year: '2026', url: 'https://nehodesign.co.il/' },
