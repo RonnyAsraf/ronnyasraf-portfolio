@@ -60,39 +60,40 @@ html = f'''---
  * Built from transparent image layers (not video) so the card's hover colour shows through.
  */
 ---
-<div class="motion" aria-hidden="true">
-  <div class="dev dev--desktop">
-    <div class="cam cam--d">
+<div class="motion motion--cover" aria-hidden="true">
+  <div class="rig rig--desktop"><div class="dev dev--desktop">
+    <div class="cam">
       <img class="base" src="{URL}/d-base.webp" alt="" loading="lazy" decoding="async" />
 {tile_html('d', D, 'td')}
     </div>
-  </div>
-  <div class="dev dev--tablet">
-    <div class="cam cam--t">
+  </div></div>
+  <div class="rig rig--tablet"><div class="dev dev--tablet">
+    <div class="cam">
       <img class="base" src="{URL}/t-base.webp" alt="" loading="lazy" decoding="async" />
 {tile_html('t', T, 'tt')}
     </div>
-  </div>
-  <div class="dev dev--phone">
-    <div class="cam cam--p">
+  </div></div>
+  <div class="rig rig--phone"><div class="dev dev--phone">
+    <div class="cam">
       <img class="base" src="{URL}/p-base.webp" alt="" loading="lazy" decoding="async" />
 {tile_html('p', P, 'tp')}
       <img class="tile swipe" style="left:{SW[0]}%;top:{SW[1]:.3f}%;width:{SW[2]}%;height:{SW[3]:.3f}%" src="{URL}/p-swipe.webp" alt="" loading="lazy" decoding="async" />
     </div>
-  </div>
+  </div></div>
 </div>
 
 <style>
   /* Sizes in cqw (percent of the card width) so the scene scales with the card. Card is 905:620 = 100cqw x 68.5cqw. */
   .motion {{ position: absolute; inset: 0; container-type: inline-size; pointer-events: none; opacity: 0; transition: opacity .35s ease; }}
+  .rig {{ position: absolute; }}
   .dev {{
-    position: absolute; overflow: hidden; background: #fff; opacity: 0;
+    position: absolute; inset: 0; overflow: hidden; background: #fff; opacity: 0;
     border: .45cqw solid rgba(255, 255, 255, .75); background-clip: padding-box;
     box-shadow: 2.1cqw 1.7cqw 4.7cqw rgba(112, 144, 176, .2);
   }}
-  .dev--desktop {{ left: 8cqw; top: 10.6cqw; width: 84cqw; aspect-ratio: 16 / 9; border-radius: 1.3cqw; }}
-  .dev--tablet  {{ left: 29.75cqw; top: 5cqw; width: 40.5cqw; aspect-ratio: 834 / 1194; border-radius: 2.6cqw; }}
-  .dev--phone   {{ left: 36.1cqw; top: 4.2cqw; width: 27.8cqw; aspect-ratio: 390 / 844; border-radius: 4cqw; }}
+  .rig--desktop {{ left: 8cqw; top: 10.6cqw; width: 84cqw; aspect-ratio: 16 / 9; }} .dev--desktop {{ border-radius: 1.3cqw; }}
+  .rig--tablet {{ left: 29.75cqw; top: 5cqw; width: 40.5cqw; aspect-ratio: 834 / 1194; }} .dev--tablet {{ border-radius: 2.6cqw; }}
+  .rig--phone {{ left: 36.1cqw; top: 4.2cqw; width: 27.8cqw; aspect-ratio: 390 / 844; }} .dev--phone {{ border-radius: 4cqw; }}
   .cam {{ position: absolute; inset: 0; }}
   .base, .tile {{ position: absolute; display: block; }}
   .base {{ inset: 0; width: 100%; height: 100%; }}
@@ -109,14 +110,14 @@ html = f'''---
   @keyframes sc-t {{ 0%, 33% {{ opacity: 0; transform: translateY(4cqw) scale(.96); }} 37%, 63% {{ opacity: 1; transform: none; }} 66%, 100% {{ opacity: 0; transform: scale(1.02); }} }}
   @keyframes sc-p {{ 0%, 66% {{ opacity: 0; transform: translateY(4cqw) scale(.96); }} 70%, 97% {{ opacity: 1; transform: none; }} 100% {{ opacity: 0; transform: scale(1.02); }} }}
 
-  /* desktop: parts pop in one by one, then the camera zooms into the AI recommendations card */
+  /* desktop: parts pop in one by one, then the whole device (frame included) zooms into the AI recommendations card */
   :global(.card.is-playing) .td {{ animation: build-d {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(.35s + var(--i) * .16s); }}
   @keyframes build-d {{ 0% {{ opacity: 0; transform: translateY(14%) scale(.96); }} 4%, 33% {{ opacity: 1; transform: none; }} 34%, 100% {{ opacity: 0; }} }}
-  :global(.card.is-playing) .cam--d {{ transform-origin: 63% 46%; animation: zoom-d {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
+  :global(.card.is-playing) .rig--desktop {{ transform-origin: 63% 46%; animation: zoom-d {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
   @keyframes zoom-d {{ 0%, 18% {{ transform: none; }} 24%, 30% {{ transform: scale(1.75); }} 33%, 100% {{ transform: scale(1.75); }} }}
 
   /* tablet: zoom into the order summary, dishes drop in one by one */
-  :global(.card.is-playing) .cam--t {{ transform-origin: 20% 55%; animation: zoom-t {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
+  :global(.card.is-playing) .rig--tablet {{ transform-origin: 20% 55%; animation: zoom-t {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
   @keyframes zoom-t {{ 0%, 38% {{ transform: none; }} 43%, 63% {{ transform: scale(1.45); }} 66%, 100% {{ transform: scale(1.45); }} }}
   :global(.card.is-playing) .tt {{ animation: build-t {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .45s); }}
   @keyframes build-t {{ 0%, 43% {{ opacity: 0; transform: translateY(-18%) scale(.97); }} 46%, 66% {{ opacity: 1; transform: none; }} 67%, 100% {{ opacity: 0; }} }}
@@ -126,7 +127,7 @@ html = f'''---
   @keyframes build-p {{ 0%, 69% {{ opacity: 0; transform: translateX(12%); }} 72%, 99% {{ opacity: 1; transform: none; }} 100% {{ opacity: 0; }} }}
   :global(.card.is-playing) .swipe {{ animation: swipe {DUR}s cubic-bezier(.2,.7,.2,1) infinite; }}
   @keyframes swipe {{ 0%, 82% {{ opacity: 0; transform: translateX(8%); }} 85%, 99% {{ opacity: 1; transform: none; }} 100% {{ opacity: 0; }} }}
-  :global(.card.is-playing) .cam--p {{ transform-origin: 50% 24%; animation: zoom-p {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
+  :global(.card.is-playing) .rig--phone {{ transform-origin: 50% 24%; animation: zoom-p {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
   @keyframes zoom-p {{ 0%, 80% {{ transform: none; }} 86%, 97% {{ transform: scale(1.5); }} 100% {{ transform: scale(1.5); }} }}
 
   @media (prefers-reduced-motion: reduce) {{ .motion {{ display: none; }} }}
@@ -134,7 +135,7 @@ html = f'''---
 
 <script>
   // Play on hover (restarting from the first scene); on touch screens, play while the card is mostly in view.
-  const cards = document.querySelectorAll<HTMLElement>('.card:has(.motion)');
+  const cards = document.querySelectorAll<HTMLElement>('.card:has(.motion--cover)');
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {{
     if (matchMedia('(hover: hover)').matches) {{
       cards.forEach((c) => {{
