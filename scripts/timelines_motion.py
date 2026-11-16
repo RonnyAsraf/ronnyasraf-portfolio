@@ -1,6 +1,6 @@
 """Builds the Timelines card animation from three Figma phone screens and writes TimelinesMotion.astro.
 Usage: python3 timelines_motion.py <dir with Figma screenshot blobs> <repo>"""
-import sys, glob, os
+import sys, glob, os, hashlib, time
 from PIL import Image, ImageDraw
 B, REPO = sys.argv[1], sys.argv[2]
 OUT = f'{REPO}/public/images/case-studies/timelines/motion'
@@ -30,7 +30,7 @@ def scene(img, name, tiles):
     return out
 
 S1 = scene(f('o3eecd-909f3253'), 'a',
-    [(f'r{i}', 0, y, W, 86, 'up') for i, y in enumerate([120, 211, 301, 392, 483, 574, 664])] + [('fab', 312, 806, 76, 76, 'pop')])
+    [(f'r{i}', 0, y, W, 86, 'up') for i, y in enumerate([120, 211, 301, 392, 483, 574, 664])])
 S2 = scene(f('2hpyga-e482b207'), 'b', [
     ('hero', 0, 96, W, 256, 'up'), ('knob', 166, 371, 24, 24, 'knob'),
     ('tags', 40, 436, 360, 72, 'up'), ('month', 140, 528, 150, 34, 'up'), ('post', 26, 572, 376, 354, 'up')])
@@ -39,12 +39,13 @@ S3 = scene(img3, 'c', [
     ('pick', 30, 112, 368, 56, 'up'), ('auto', 150, 178, 252, 28, 'up'),
     ('p1', 30, 226, 368, 182, 'up'), ('p2', 30, 420, 368, 230, 'up'), ('p3', 30, 662, 368, 124, 'up'), ('foot', 0, 790, W, 136, 'up', img3.getpixel((5, 920)))])
 
+V = hashlib.md5(str(time.time()).encode()).hexdigest()[:8]
 DUR = 14
 def layer(prefix, tiles, n):
-    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp" alt="" loading="lazy" decoding="async" />'
+    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp?v={V}" alt="" loading="lazy" decoding="async" />'
                      for i, (key, x, y, w, h, kind) in enumerate(tiles))
     return f'''      <div class="scene scene--{n}">
-        <img class="base" src="{URL}/{prefix}-base.webp" alt="" loading="lazy" decoding="async" />
+        <img class="base" src="{URL}/{prefix}-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {imgs}
       </div>'''
 

@@ -1,6 +1,6 @@
 """Builds the Velora card animation (a product walkthrough) from Figma screens and writes VeloraMotion.astro.
 Usage: python3 velora_motion.py <dir with Figma screenshot blobs> <repo>"""
-import sys, glob, os
+import sys, glob, os, hashlib, time
 from PIL import Image, ImageDraw
 B, REPO = sys.argv[1], sys.argv[2]
 OUT = f'{REPO}/public/images/case-studies/velora/motion'
@@ -33,12 +33,13 @@ S2 = scene(f('km8xj3-2e47331f'), 'b', [
     ('inc', 682, 398, 608, 268, 'up'), ('don', 56, 398, 608, 268, 'up'), ('goals', 56, 684, 1234, 322, 'up')])
 S3 = scene(f('8gemce-3201bef1'), 'c', [(f'b{i}', x, 600, 122, 272, 'bar') for i, x in enumerate([1060, 830, 600, 370, 140])])
 
+V = hashlib.md5(str(time.time()).encode()).hexdigest()[:8]
 DUR = 14
 def layer(prefix, tiles, n):
-    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp" alt="" loading="lazy" decoding="async" />'
+    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp?v={V}" alt="" loading="lazy" decoding="async" />'
                      for i, (key, x, y, w, h, kind) in enumerate(tiles))
     return f'''      <div class="scene scene--{n}">
-        <img class="base" src="{URL}/{prefix}-base.webp" alt="" loading="lazy" decoding="async" />
+        <img class="base" src="{URL}/{prefix}-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {imgs}
       </div>'''
 

@@ -1,6 +1,6 @@
 """Builds the layered Money Map card animation from three Figma phone screens and writes MoneyMapMotion.astro.
 Usage: python3 money_map_motion.py <dir with Figma screenshot blobs> <repo>"""
-import sys, glob, os
+import sys, glob, os, hashlib, time
 from PIL import Image, ImageDraw
 B, REPO = sys.argv[1], sys.argv[2]
 OUT = f'{REPO}/public/images/case-studies/the-money-map/motion'
@@ -35,12 +35,13 @@ S3 = scene(f('3dle3d-73d5dc88'), 'c', [
     ('b1', 46, 461, 62, 37, 'bar'), ('b2', 125, 445, 62, 53, 'bar'), ('b3', 204, 391, 62, 107, 'bar'), ('b4', 282, 300, 62, 198, 'bar'),
     ('h', 186, 596, 184, 24, 'up'), ('l1', 22, 634, 346, 56, 'up'), ('l2', 22, 698, 346, 56, 'up'), ('l3', 22, 762, 346, 56, 'up')])
 
+V = hashlib.md5(str(time.time()).encode()).hexdigest()[:8]
 DUR = 10
 def layer(prefix, tiles, n):
-    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp" alt="" loading="lazy" decoding="async" />'
+    imgs = '\n'.join(f'        <img class="tile k-{kind} s{n}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{i}" src="{URL}/{prefix}-{key}.webp?v={V}" alt="" loading="lazy" decoding="async" />'
                      for i, (key, x, y, w, h, kind) in enumerate(tiles))
     return f'''      <div class="scene scene--{n}"><div class="cam cam--{n}">
-        <img class="base" src="{URL}/{prefix}-base.webp" alt="" loading="lazy" decoding="async" />
+        <img class="base" src="{URL}/{prefix}-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {imgs}
       </div></div>'''
 

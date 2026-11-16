@@ -1,5 +1,5 @@
 """Builds the layered Cover card animation: crops UI parts from the Figma screens and writes CoverMotion.astro."""
-import sys, glob, os
+import sys, glob, os, hashlib, time
 from PIL import Image, ImageDraw
 B, REPO = sys.argv[1], sys.argv[2]
 OUT = f'{REPO}/public/images/case-studies/cover/motion'
@@ -47,9 +47,10 @@ save(sw.crop((0, 165, 390, 310)), 'p-swipe', maxw=780)
 SW = (0, 165 / 844 * 100, 100, 145 / 844 * 100)
 
 # ---------- component ----------
+V = hashlib.md5(str(time.time()).encode()).hexdigest()[:8]
 DUR = 14  # seconds per loop
 def tile_html(prefix, tiles, cls):
-    return '\n'.join(f'      <img class="tile {cls}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{n}" src="{URL}/{prefix}-{k}.webp" alt="" loading="lazy" decoding="async" />'
+    return '\n'.join(f'      <img class="tile {cls}" style="left:{x:.3f}%;top:{y:.3f}%;width:{w:.3f}%;height:{h:.3f}%;--i:{n}" src="{URL}/{prefix}-{k}.webp?v={V}" alt="" loading="lazy" decoding="async" />'
                      for n, (k, x, y, w, h) in enumerate(tiles))
 
 html = f'''---
@@ -63,21 +64,21 @@ html = f'''---
 <div class="motion motion--cover" aria-hidden="true">
   <div class="rig rig--desktop"><div class="dev dev--desktop">
     <div class="cam">
-      <img class="base" src="{URL}/d-base.webp" alt="" loading="lazy" decoding="async" />
+      <img class="base" src="{URL}/d-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {tile_html('d', D, 'td')}
     </div>
   </div></div>
   <div class="rig rig--tablet"><div class="dev dev--tablet">
     <div class="cam">
-      <img class="base" src="{URL}/t-base.webp" alt="" loading="lazy" decoding="async" />
+      <img class="base" src="{URL}/t-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {tile_html('t', T, 'tt')}
     </div>
   </div></div>
   <div class="rig rig--phone"><div class="dev dev--phone">
     <div class="cam">
-      <img class="base" src="{URL}/p-base.webp" alt="" loading="lazy" decoding="async" />
+      <img class="base" src="{URL}/p-base.webp?v={V}" alt="" loading="lazy" decoding="async" />
 {tile_html('p', P, 'tp')}
-      <img class="tile swipe" style="left:{SW[0]}%;top:{SW[1]:.3f}%;width:{SW[2]}%;height:{SW[3]:.3f}%" src="{URL}/p-swipe.webp" alt="" loading="lazy" decoding="async" />
+      <img class="tile swipe" style="left:{SW[0]}%;top:{SW[1]:.3f}%;width:{SW[2]}%;height:{SW[3]:.3f}%" src="{URL}/p-swipe.webp?v={V}" alt="" loading="lazy" decoding="async" />
     </div>
   </div></div>
 </div>
