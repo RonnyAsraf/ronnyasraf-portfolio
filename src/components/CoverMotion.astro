@@ -1,0 +1,93 @@
+---
+/**
+ * Animated card preview for Cover: live screens playing inside device frames.
+ * Built from images (not video) so it stays transparent over the card's hover colour,
+ * sharp on any screen and light to load. Plays on hover (or when scrolled into view on touch devices).
+ */
+const base = '/images/case-studies/cover/motion';
+---
+<div class="motion" aria-hidden="true">
+  <div class="dev dev--desktop">
+    <img class="scr w-a" src={`${base}/desktop-dashboard.webp`} alt="" loading="lazy" decoding="async" />
+    <img class="scr w-b" src={`${base}/desktop-orders.webp`} alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="dev dev--tablet">
+    <img class="scr t-a" src={`${base}/tablet-ai.webp`} alt="" loading="lazy" decoding="async" />
+    <img class="scr t-b" src={`${base}/tablet-printed.webp`} alt="" loading="lazy" decoding="async" />
+    <img class="scr t-c" src={`${base}/tablet-payment.webp`} alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="dev dev--phone">
+    <img class="scr p-a" src={`${base}/mobile-tables.webp`} alt="" loading="lazy" decoding="async" />
+    <img class="scr p-b" src={`${base}/mobile-swipe.webp`} alt="" loading="lazy" decoding="async" />
+  </div>
+</div>
+
+<style>
+  /* Sizes in cqw (percent of the card width) so the whole scene scales with the card. */
+  .motion {
+    position: absolute; inset: 0; container-type: inline-size; pointer-events: none;
+    opacity: 0; transition: opacity .35s ease;
+  }
+  .dev {
+    position: absolute; overflow: hidden; background: #fff;
+    border: .45cqw solid rgba(255, 255, 255, .7);
+    box-shadow: 2.1cqw 1.7cqw 4.7cqw rgba(112, 144, 176, .18);
+    background-clip: padding-box;
+    opacity: 0;
+  }
+  .dev--desktop { left: 5cqw; top: 11cqw; width: 68cqw; aspect-ratio: 16 / 9; border-radius: 1.2cqw; }
+  .dev--tablet  { left: 69cqw; top: 22cqw; width: 23cqw; aspect-ratio: 834 / 1194; border-radius: 2cqw; }
+  .dev--phone   { left: 6cqw; top: 35cqw; width: 14cqw; aspect-ratio: 390 / 844; border-radius: 2.4cqw; }
+  .scr { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; }
+
+  /* ---- playing ---- */
+  :global(.card.is-playing) .motion { opacity: 1; }
+  :global(.card.is-playing .card-static) { opacity: 0; }
+
+  :global(.card.is-playing) .dev--desktop { animation: dev-in 9s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .dev--phone   { animation: dev-in-2 9s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .dev--tablet  { animation: dev-in-3 9s cubic-bezier(.2,.7,.2,1) infinite; }
+
+  :global(.card.is-playing) .w-a { animation: first-50 9s ease infinite; }
+  :global(.card.is-playing) .w-b { animation: from-50 9s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .t-a { animation: first-30 9s ease infinite; }
+  :global(.card.is-playing) .t-b { animation: win-30-60 9s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .t-c { animation: from-60 9s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .p-a { animation: first-42 9s ease infinite; }
+  :global(.card.is-playing) .p-b { animation: from-42 9s cubic-bezier(.2,.7,.2,1) infinite; }
+
+  /* devices rise in one after another, hold, then ease out before the loop restarts */
+  @keyframes dev-in   { 0% { opacity: 0; transform: translateY(4cqw) scale(.97); } 9%, 93% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-1cqw); } }
+  @keyframes dev-in-2 { 0%, 5% { opacity: 0; transform: translateY(5cqw); } 14%, 93% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-1cqw); } }
+  @keyframes dev-in-3 { 0%, 9% { opacity: 0; transform: translateY(5cqw); } 18%, 93% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-1cqw); } }
+
+  /* screens: the first one shows from the start, the next ones slide up into place */
+  @keyframes first-30 { 0%, 30% { opacity: 1; } 33%, 100% { opacity: 0; } }
+  @keyframes first-42 { 0%, 42% { opacity: 1; } 45%, 100% { opacity: 0; } }
+  @keyframes first-50 { 0%, 50% { opacity: 1; } 53%, 100% { opacity: 0; } }
+  @keyframes win-30-60 { 0%, 29% { opacity: 0; transform: translateY(8%); } 33%, 60% { opacity: 1; transform: none; } 63%, 100% { opacity: 0; transform: none; } }
+  @keyframes from-42 { 0%, 41% { opacity: 0; transform: translateX(6%); } 45%, 100% { opacity: 1; transform: none; } }
+  @keyframes from-50 { 0%, 49% { opacity: 0; transform: translateY(4%); } 53%, 100% { opacity: 1; transform: none; } }
+  @keyframes from-60 { 0%, 59% { opacity: 0; transform: translateY(8%); } 63%, 100% { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) { .motion { display: none; } }
+</style>
+
+<script>
+  // Play on hover; on touch screens, play while the card is mostly in view.
+  const cards = document.querySelectorAll<HTMLElement>('.card:has(.motion)');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    if (matchMedia('(hover: hover)').matches) {
+      cards.forEach((c) => {
+        c.addEventListener('mouseenter', () => c.classList.add('is-playing'));
+        c.addEventListener('mouseleave', () => c.classList.remove('is-playing'));
+        c.addEventListener('focusin', () => c.classList.add('is-playing'));
+        c.addEventListener('focusout', () => c.classList.remove('is-playing'));
+      });
+    } else {
+      const io = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('is-playing', e.isIntersecting)), { threshold: 0.6 });
+      cards.forEach((c) => io.observe(c));
+    }
+  }
+</script>
