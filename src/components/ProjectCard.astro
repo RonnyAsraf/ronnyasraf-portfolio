@@ -4,6 +4,7 @@ import { cardColors } from '../data/cardColors';
 import CoverMotion from './CoverMotion.astro';
 import MoneyMapMotion from './MoneyMapMotion.astro';
 import VeloraMotion from './VeloraMotion.astro';
+import TimelinesMotion from './TimelinesMotion.astro';
 
 interface Props {
   image: string; // card image base path, e.g. images/cards/case-studies/cover
@@ -13,7 +14,7 @@ interface Props {
   href?: string; // internal page
   url?: string; // external live site
   featured?: boolean; // wide 905:620 image, used for the case studies on the home page
-  motion?: 'cover' | 'the-money-map' | 'velora'; // animated preview that plays on hover
+  motion?: 'cover' | 'the-money-map' | 'velora' | 'timelines'; // animated preview that plays on hover
 }
 const { image, name, tags, year, href, url, featured = false, motion } = Astro.props;
 const img = findImage(image);
@@ -29,6 +30,7 @@ const external = !href && !!url;
     {motion === 'cover' && <CoverMotion />}
     {motion === 'the-money-map' && <MoneyMapMotion />}
     {motion === 'velora' && <VeloraMotion />}
+    {motion === 'timelines' && <TimelinesMotion />}
   </a>
   <div class="card__info">
     <div class="card__meta meta"><span>{tags}</span><span>{year}</span></div>

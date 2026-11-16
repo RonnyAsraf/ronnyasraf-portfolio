@@ -26,7 +26,7 @@ const services = [
     <div class="featured__head wrap"><h2 class="label">Case studies</h2></div>
     <div class="featured__grid row__track wrap">
       {caseStudies.map((c) => (
-        <ProjectCard featured motion={['cover', 'the-money-map', 'velora'].includes(c.slug) ? (c.slug as 'cover' | 'the-money-map' | 'velora') : undefined} image={`images/cards/case-studies-featured/${c.slug}`} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
+        <ProjectCard featured motion={c.slug as 'cover' | 'the-money-map' | 'velora' | 'timelines'} image={`images/cards/case-studies-featured/${c.slug}`} name={c.name} tags={c.tags} year={c.year} href={`/case-studies/${c.slug}`} />
       ))}
     </div>
   </section>
