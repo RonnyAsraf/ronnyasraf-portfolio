@@ -3,7 +3,7 @@ export const cardVideos: Record<string, string> = {
  "auto-fit": "d2218081",
  "avni-derech-school": "28c77a33",
  "club-d": "94581130",
- "cover-site": "3c04121f",
+ "cover-site": "3a3d415e",
  "eigenq": "6229f985",
  "emris-pharma": "fa0ea184",
  "ganit-park": "ae735ac6",
