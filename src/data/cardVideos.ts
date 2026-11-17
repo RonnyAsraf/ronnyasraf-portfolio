@@ -6,6 +6,7 @@ export const cardVideos: Record<string, string> = {
  "cover-site": "52220ff8",
  "eigenq": "6229f985",
  "emris-pharma": "fa0ea184",
+ "evel-israel": "2eb14edb",
  "ganit-park": "ae735ac6",
  "go-catalog": "b87aaf70",
  "go-fiber": "bace78f9",
@@ -23,10 +24,15 @@ export const cardVideos: Record<string, string> = {
  "petra": "5f6ef660",
  "qombat": "c8c6cb2a",
  "rakafot-project": "ff711850",
+ "sheleg": "801e5a6b",
  "streetwise": "92513415",
  "terrasafe": "ee5c3693",
+ "tfilatech": "1aa8373e",
  "the-code-of-creation": "f7273f5a",
  "the-morning-club": "e774e5ac",
+ "timelines-albums": "1b8cc81e",
+ "timelines-site": "f4bc4601",
  "urbanica": "78f40aef",
- "velora-site": "1b01f42f"
+ "velora-site": "1b01f42f",
+ "yafo-ai": "c1f6803f"
 };

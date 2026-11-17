@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CaseHero from '../../components/CaseHero.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import VideoLightbox from '../../components/VideoLightbox.astro';
 import { allSites } from '../../data/projects';
 
 const summary =
@@ -12,6 +13,7 @@ const summary =
   <section class="grid wrap" aria-label="All websites">
     {allSites.map((s) => <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />)}
   </section>
+  <VideoLightbox />
 </Base>
 
 <style>

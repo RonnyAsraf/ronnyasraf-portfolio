@@ -73,6 +73,13 @@ export const allSites: Site[] = [
   { slug: 'club-d', name: 'Club-D', type: 'Website, Elementor', year: '2024', url: 'http://www.clubd.fund' },
   { slug: 'haetz-herzeliya', name: 'Haetz Herzeliya', type: 'Website, Wix Studio', year: '2025', url: 'http://www.haetz-herzelia.co.il' },
   { slug: 'urbanica', name: 'Urbanica', type: 'Website, Shopify', year: '2024', url: 'http://urbanicafurniture.com' },
+  // No longer live: the card plays the recording and View project opens it large. Kept low in the list, most are older.
+  { slug: 'tfilatech', name: 'TfilaTech', type: 'Website, Elementor', year: '2025', page: '/websites/tfilatech', archived: true, summary: 'A website for a platform offering accessible, secular-friendly Jewish content: prayers, blessings, holidays and daily times.' },
+  { slug: 'yafo-ai', name: 'Yafo.ai', type: 'Website, Wix Studio', year: '2025', page: '/websites/yafo-ai', archived: true, summary: 'A website for an AI education and community hub for Israeli audiences, with events and content on the big questions AI raises.' },
+  { slug: 'evel-israel', name: 'Evel Israel', type: 'Website, Wix Studio', year: '2025', page: '/websites/evel-israel', archived: true, summary: 'A clean, accessible website for a service that makes creating a memorial notice simple.' },
+  { slug: 'timelines-site', name: 'Timelines', type: 'Website, Wix Studio', year: '2024', page: '/websites/timelines-site', archived: true, summary: 'A website for a photo-sharing app used by kindergartens, where teachers share daily photos with parents.' },
+  { slug: 'timelines-albums', name: 'Timelines Albums', type: 'Landing Page, Wix Studio', year: '2024', page: '/websites/timelines-albums', archived: true, summary: 'A landing page for an app that turns trip photos into printed albums automatically.' },
+  { slug: 'sheleg', name: 'Sheleg', type: 'Website, Elementor', year: '2024', page: '/websites/sheleg', archived: true, summary: 'A website for a boutique construction company specializing in light-frame homes.' },
 ];
 
 /** Card order used on the home page and in the "Other ..." carousels at the bottom of project pages. */
