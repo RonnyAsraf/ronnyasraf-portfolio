@@ -38,7 +38,8 @@ export const websiteProjects: Project[] = [
 ];
 
 /** Every live site, as on the current Websites page. `page` links to an internal project page when one exists. */
-export interface Site { slug: string; name: string; type: string; year: string; url?: string; page?: string; }
+/** archived: the live site changed or is offline, so the card opens a page with the full screen recording instead of linking out. */
+export interface Site { slug: string; name: string; type: string; year: string; url?: string; page?: string; archived?: boolean; summary?: string; }
 
 export const allSites: Site[] = [
   { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/', page: '/websites/cover-site' },
@@ -61,7 +62,7 @@ export const allSites: Site[] = [
   { slug: 'qombat', name: 'Qombat', type: 'Website, Elementor', year: '2025', url: 'http://www.qombat.ltd', page: '/websites/qombat' },
   { slug: 'terrasafe', name: 'TerraSafe', type: 'Website, Wix Studio', year: '2025', url: 'https://www.terrasafe.co.il/' },
   { slug: 'go-catalog', name: 'Go Catalog', type: 'Landing Page, Wix Studio', year: '2025', url: 'https://www.go-n-go.com/catalog' },
-  { slug: 'eigenq', name: 'EigenQ', type: 'Website, Wix Studio', year: '2025', url: 'http://www.eigenq.com' },
+  { slug: 'eigenq', name: 'EigenQ', type: 'Website, Wix Studio', year: '2025', page: '/websites/eigenq', archived: true, summary: 'A website for a quantum security company that builds quantum hardware and software for enterprise and government, with pages for its products, technology, use cases and investors.' },
   { slug: 'makom-yafe-lecafe', name: 'Makom Yafe Lecafe', type: 'Landing Page, Wix Studio', year: '2024', url: 'http://www.makomyafelecafe.com' },
   { slug: 'ican', name: 'ICAN', type: 'Website, Wix Studio', year: '2025', url: 'https://www.icanstrategy.com/' },
   { slug: 'roots-studio', name: "Root's Studio", type: 'Website, Wix Studio', year: '2023', url: 'http://ronnyasraf.wixstudio.com/galwuntch' },

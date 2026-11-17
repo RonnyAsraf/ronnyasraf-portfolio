@@ -1,13 +1,19 @@
 ---
 import ProjectPage from '../../components/ProjectPage.astro';
-import { websiteProjects, type Project } from '../../data/projects';
+import ArchivedSite from '../../components/ArchivedSite.astro';
+import { websiteProjects, allSites, type Project, type Site } from '../../data/projects';
 
 export function getStaticPaths() {
-  return websiteProjects.map((p, i) => {
+  const pages = websiteProjects.map((p, i) => {
     const n = websiteProjects[(i + 1) % websiteProjects.length];
     return { params: { slug: p.slug }, props: { project: p, next: { href: `/websites/${n.slug}`, title: n.title } } };
   });
+  // Sites that are no longer live in this design: a page with the full screen recording.
+  const archived = allSites.filter((s) => s.archived).map((s) => ({ params: { slug: s.slug }, props: { site: s } }));
+  return [...pages, ...archived];
 }
-const { project, next } = Astro.props as { project: Project; next: { href: string; title: string } };
+const { project, next, site } = Astro.props as { project?: Project; next?: { href: string; title: string }; site?: Site };
 ---
-<ProjectPage project={project} dir={`images/websites/${project.slug}`} kind="websites" next={next} />
+{site
+  ? <ArchivedSite site={site} />
+  : <ProjectPage project={project!} dir={`images/websites/${project!.slug}`} kind="websites" next={next!} />}
