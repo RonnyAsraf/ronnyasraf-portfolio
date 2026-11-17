@@ -98,17 +98,17 @@ html = f'''---
   :global(.card.is-playing) .scene--1 {{ animation: sc1 {DUR}s ease infinite; }}
   :global(.card.is-playing) .scene--2 {{ animation: sc2 {DUR}s ease infinite; }}
   :global(.card.is-playing) .scene--3 {{ animation: sc3 {DUR}s ease infinite; }}
-  @keyframes sc1 {{ 0%, 26% {{ opacity: 1; }} 29%, 100% {{ opacity: 0; }} }}
-  @keyframes sc2 {{ 0%, 26% {{ opacity: 0; transform: translateY(1.5%); }} 29%, 50% {{ opacity: 1; transform: none; }} 53%, 100% {{ opacity: 0; }} }}
-  @keyframes sc3 {{ 0%, 50% {{ opacity: 0; }} 53%, 100% {{ opacity: 1; }} }}
+  @keyframes sc1 {{ 0%, 24% {{ opacity: 1; }} 25.2%, 100% {{ opacity: 0; }} }}
+  @keyframes sc2 {{ 0%, 24% {{ opacity: 0; transform: translateY(1.5%); }} 25.2%, 47% {{ opacity: 1; transform: none; }} 48.2%, 100% {{ opacity: 0; }} }}
+  @keyframes sc3 {{ 0%, 47% {{ opacity: 0; }} 48.2%, 100% {{ opacity: 1; }} }}
 
   /* parts build in each page */
   :global(.card.is-playing) .s1 {{ animation: in1 {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(.6s + var(--i) * .12s); }}
   :global(.card.is-playing) .s2 {{ animation: in2 {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .13s); }}
   :global(.card.is-playing) .s3 {{ animation: in3 {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .14s); }}
-  @keyframes in1 {{ 0% {{ opacity: 0; transform: translateY(18%) scale(.97); }} 4%, 26% {{ opacity: 1; transform: none; }} 30%, 100% {{ opacity: 0; }} }}
-  @keyframes in2 {{ 0%, 28% {{ opacity: 0; transform: translateY(14%) scale(.98); }} 32%, 50% {{ opacity: 1; transform: none; }} 54%, 100% {{ opacity: 0; }} }}
-  @keyframes in3 {{ 0%, 54% {{ opacity: 1; clip-path: inset(100% 0 0 0); }} 61%, 99% {{ opacity: 1; clip-path: inset(0 0 0 0); }} 100% {{ opacity: 0; }} }}
+  @keyframes in1 {{ 0% {{ opacity: 0; transform: translateY(18%) scale(.97); }} 4%, 24% {{ opacity: 1; transform: none; }} 25.2%, 100% {{ opacity: 0; }} }}
+  @keyframes in2 {{ 0%, 24.5% {{ opacity: 0; transform: translateY(14%) scale(.98); }} 28%, 47% {{ opacity: 1; transform: none; }} 48.2%, 100% {{ opacity: 0; }} }}
+  @keyframes in3 {{ 0%, 48.5% {{ opacity: 1; clip-path: inset(100% 0 0 0); }} 55%, 99% {{ opacity: 1; clip-path: inset(0 0 0 0); }} 100% {{ opacity: 0; }} }}
 
   /* cursor: to the clients icon (click), to the financial efficiency tab (click), then hovers the 10-year bars */
   :global(.card.is-playing) .cursor {{ animation: cur {DUR}s cubic-bezier(.45,0,.2,1) infinite; }}
@@ -151,3 +151,7 @@ html = f'''---
 '''
 open(f'{REPO}/src/components/VeloraMotion.astro', 'w').write(html)
 print(len(glob.glob(OUT + '/*')), 'files')
+
+import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from scope_keyframes import scope
+scope(f'{REPO}/src/components/VeloraMotion.astro', 'vl')

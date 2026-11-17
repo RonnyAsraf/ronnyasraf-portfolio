@@ -59,38 +59,38 @@
   :global(.card.is-playing) .motion--tl { opacity: 1; }
   :global(.card.is-playing .card-static) { opacity: 0; }
 
-  :global(.card.is-playing) .dev { animation: dev 14s cubic-bezier(.2,.7,.2,1) infinite; }
-  @keyframes dev { 0% { opacity: 0; transform: translateY(4cqw) scale(.96); } 4%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(1.02); } }
+  :global(.card.is-playing) .dev { animation: tl-dev 14s cubic-bezier(.2,.7,.2,1) infinite; }
+  @keyframes tl-dev { 0% { opacity: 0; transform: translateY(4cqw) scale(.96); } 4%, 97% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(1.02); } }
 
   /* screens slide in like app navigation */
-  :global(.card.is-playing) .scene--1 { animation: sc1 14s cubic-bezier(.2,.7,.2,1) infinite; }
-  :global(.card.is-playing) .scene--2 { animation: sc2 14s cubic-bezier(.2,.7,.2,1) infinite; }
-  :global(.card.is-playing) .scene--3 { animation: sc3 14s cubic-bezier(.2,.7,.2,1) infinite; }
-  @keyframes sc1 { 0%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; transform: translateX(-8%); } }
-  @keyframes sc2 { 0%, 31% { opacity: 0; transform: translateX(10%); } 34%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; transform: translateX(-8%); } }
-  @keyframes sc3 { 0%, 64% { opacity: 0; transform: translateX(10%); } 67%, 100% { opacity: 1; transform: none; } }
+  :global(.card.is-playing) .scene--1 { animation: tl-sc1 14s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .scene--2 { animation: tl-sc2 14s cubic-bezier(.2,.7,.2,1) infinite; }
+  :global(.card.is-playing) .scene--3 { animation: tl-sc3 14s cubic-bezier(.2,.7,.2,1) infinite; }
+  @keyframes tl-sc1 { 0%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; transform: translateX(-8%); } }
+  @keyframes tl-sc2 { 0%, 31% { opacity: 0; transform: translateX(10%); } 34%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; transform: translateX(-8%); } }
+  @keyframes tl-sc3 { 0%, 64% { opacity: 0; transform: translateX(10%); } 67%, 100% { opacity: 1; transform: none; } }
 
   /* builds */
-  :global(.card.is-playing) .s1 { animation: in1 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(.35s + var(--i) * .13s); }
-  :global(.card.is-playing) .s2 { animation: in2 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .15s); }
-  :global(.card.is-playing) .s3 { animation: in3 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .13s); }
-  :global(.card.is-playing) .k-pop { animation-name: pop1; }
-  :global(.card.is-playing) .k-knob { animation-name: knob; animation-delay: 0s; }
-  @keyframes in1  { 0% { opacity: 0; transform: translateX(10%); } 3%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; } }
-  @keyframes pop1 { 0%, 6% { opacity: 0; transform: scale(.4); } 9%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; } }
-  @keyframes in2  { 0%, 33% { opacity: 0; transform: translateY(14%) scale(.97); } 36%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; } }
-  @keyframes knob { 0%, 37% { opacity: 0; transform: translateX(-330%); } 39% { opacity: 1; transform: translateX(-330%); } 47%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; } }
-  @keyframes in3  { 0%, 66% { opacity: 0; transform: translateY(14%) scale(.97); } 69%, 99% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  :global(.card.is-playing) .s1 { animation: tl-in1 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(.35s + var(--i) * .13s); }
+  :global(.card.is-playing) .s2 { animation: tl-in2 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .15s); }
+  :global(.card.is-playing) .s3 { animation: tl-in3 14s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--i) * .13s); }
+  :global(.card.is-playing) .k-pop { animation-name: tl-pop1; }
+  :global(.card.is-playing) .k-knob { animation-name: tl-knob; animation-delay: 0s; }
+  @keyframes tl-in1  { 0% { opacity: 0; transform: translateX(10%); } 3%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; } }
+  @keyframes tl-pop1 { 0%, 6% { opacity: 0; transform: scale(.4); } 9%, 31% { opacity: 1; transform: none; } 34%, 100% { opacity: 0; } }
+  @keyframes tl-in2  { 0%, 33% { opacity: 0; transform: translateY(14%) scale(.97); } 36%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; } }
+  @keyframes tl-knob { 0%, 37% { opacity: 0; transform: translateX(-330%); } 39% { opacity: 1; transform: translateX(-330%); } 47%, 64% { opacity: 1; transform: none; } 67%, 100% { opacity: 0; } }
+  @keyframes tl-in3  { 0%, 66% { opacity: 0; transform: translateY(14%) scale(.97); } 69%, 99% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 
   /* taps: open the first album, then pick the trips tag */
-  :global(.card.is-playing) .tap--1 { animation: tap1 14s ease-out infinite; }
-  :global(.card.is-playing) .tap--2 { animation: tap2 14s ease-out infinite; }
-  @keyframes tap1 { 0%, 27% { opacity: 0; transform: translate(-50%, -50%) scale(.3); } 28% { opacity: 1; transform: translate(-50%, -50%) scale(.7); } 32%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); } }
-  @keyframes tap2 { 0%, 57% { opacity: 0; transform: translate(-50%, -50%) scale(.3); } 58% { opacity: 1; transform: translate(-50%, -50%) scale(.7); } 62%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); } }
+  :global(.card.is-playing) .tap--1 { animation: tl-tap1 14s ease-out infinite; }
+  :global(.card.is-playing) .tap--2 { animation: tl-tap2 14s ease-out infinite; }
+  @keyframes tl-tap1 { 0%, 27% { opacity: 0; transform: translate(-50%, -50%) scale(.3); } 28% { opacity: 1; transform: translate(-50%, -50%) scale(.7); } 32%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); } }
+  @keyframes tl-tap2 { 0%, 57% { opacity: 0; transform: translate(-50%, -50%) scale(.3); } 58% { opacity: 1; transform: translate(-50%, -50%) scale(.7); } 62%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.4); } }
 
   /* the whole phone, frame included, zooms on each screen */
-  :global(.card.is-playing) .rig { animation: zoom 14s cubic-bezier(.45,0,.2,1) infinite; }
-  @keyframes zoom {
+  :global(.card.is-playing) .rig { animation: tl-zoom 14s cubic-bezier(.45,0,.2,1) infinite; }
+  @keyframes tl-zoom {
     0%, 15% { transform: none; transform-origin: 50% 25%; }
     21%, 30% { transform: scale(1.4); transform-origin: 50% 25%; }
     34%, 45% { transform: none; transform-origin: 50% 42%; }

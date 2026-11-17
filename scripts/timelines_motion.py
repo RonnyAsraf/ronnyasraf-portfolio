@@ -149,3 +149,7 @@ html = f'''---
 '''
 open(f'{REPO}/src/components/TimelinesMotion.astro', 'w').write(html)
 print(len(glob.glob(OUT + '/*')), 'files')
+
+import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from scope_keyframes import scope
+scope(f'{REPO}/src/components/TimelinesMotion.astro', 'tl')
