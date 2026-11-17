@@ -6,6 +6,8 @@ import MoneyMapMotion from './MoneyMapMotion.astro';
 import VeloraMotion from './VeloraMotion.astro';
 import TimelinesMotion from './TimelinesMotion.astro';
 import CardMotion from './CardMotion.astro';
+import VideoLightbox from './VideoLightbox.astro';
+import { allSites } from '../data/projects';
 
 interface Props {
   image: string; // card image base path, e.g. images/cards/case-studies/cover
@@ -22,9 +24,12 @@ const img = findImage(image);
 const tint = cardColors[image];
 const primary = href ?? url;
 const external = !href && !!url;
+// Archived websites: "View project" opens the full screen recording in an overlay instead of a page.
+const archived = image.startsWith('images/cards/websites/') ? allSites.find((s) => s.archived && `images/cards/websites/${s.slug}` === image) : undefined;
+const lb = archived ? { 'data-lightbox': `/videos/websites/${archived.slug}`, 'data-lightbox-title': archived.name } : {};
 ---
 <article class:list={["card", { "card--featured": featured }]}>
-  <a class="card__media" style={tint ? `--tint:${tint}` : undefined} href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} tabindex="-1" aria-hidden="true">
+  <a {...lb} class="card__media" style={tint ? `--tint:${tint}` : undefined} href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} tabindex="-1" aria-hidden="true">
     {img
       ? <img class="card-static" src={img} alt="" loading="lazy" decoding="async" width={featured ? 905 : 590} height={featured ? 620 : 508} />
       : <span class="card__placeholder">{name}</span>}
@@ -36,13 +41,14 @@ const external = !href && !!url;
   </a>
   <div class="card__info">
     <div class="card__meta meta"><span>{tags}</span><span>{year}</span></div>
-    <h3 class="card__title"><a href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{name}</a></h3>
+    <h3 class="card__title"><a {...lb} href={primary} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>{name}</a></h3>
     <div class="card__links meta">
-      {href && <a class="link-underline" href={href}>View project</a>}
+      {href && <a {...lb} class="link-underline" href={href}>View project</a>}
       {url && <a class="link-underline" href={url} target="_blank" rel="noopener">Visit site<span class="sr-only"> (opens in a new tab)</span></a>}
     </div>
   </div>
 </article>
+{archived && <VideoLightbox />}
 
 <style>
   .card { position: relative; display: flex; flex-direction: column; gap: 16px; min-width: 0; }

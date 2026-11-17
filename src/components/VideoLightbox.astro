@@ -1,0 +1,61 @@
+---
+/** Gallery-style overlay for archived websites: blurred page behind, the screen recording large, close button top right. */
+---
+<div class="vlb" hidden role="dialog" aria-modal="true" aria-label="Website screen recording">
+  <button class="vlb__close" type="button" aria-label="Close">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <div class="vlb__frame">
+    <div class="vlb__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+    <video muted loop playsinline preload="none"></video>
+  </div>
+</div>
+
+<style is:global>
+  .vlb { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: clamp(56px, 6vw, 96px) clamp(16px, 4vw, 64px);
+    background: rgba(250, 250, 250, .45); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px);
+    opacity: 0; transition: opacity .3s ease; }
+  .vlb[hidden] { display: none; }
+  .vlb.is-open { opacity: 1; }
+  .vlb__frame { width: min(100%, calc((100vh - 2 * clamp(56px, 6vw, 96px)) * 2), 1700px); border-radius: var(--radius-panel); overflow: hidden; background: #fff;
+    box-shadow: 0 30px 90px rgba(40, 60, 90, .25); transform: translateY(16px) scale(.97); transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .vlb.is-open .vlb__frame { transform: none; }
+  .vlb__bar { height: clamp(22px, 14px + 1.2vw, 36px); background: #f4f4f4; display: flex; align-items: center; gap: 7px; padding-left: clamp(12px, 8px + 1vw, 22px); }
+  .vlb__bar i { width: 9px; height: 9px; border-radius: 50%; background: #d9d9d9; }
+  .vlb video { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: top; background: #fff; }
+  .vlb__close { position: fixed; top: clamp(14px, 2vw, 28px); right: clamp(14px, 2vw, 28px); width: 48px; height: 48px; border-radius: 50%;
+    border: 0; background: #0e0e0e; color: #fff; display: grid; place-items: center; cursor: pointer; transition: transform .2s ease; }
+  .vlb__close:hover { transform: scale(1.06); }
+  .vlb__close svg { width: 22px; height: 22px; }
+  html.vlb-lock { overflow: hidden; }
+</style>
+
+<script>
+  const box = document.querySelector<HTMLElement>('.vlb');
+  if (box) {
+    const video = box.querySelector('video')!;
+    const close = box.querySelector<HTMLButtonElement>('.vlb__close')!;
+    let opener: HTMLElement | null = null;
+    const hide = () => {
+      box.classList.remove('is-open'); video.pause(); document.documentElement.classList.remove('vlb-lock');
+      setTimeout(() => { box.hidden = true; video.removeAttribute('src'); video.load(); }, 300);
+      opener?.focus();
+    };
+    document.addEventListener('click', (e) => {
+      const a = (e.target as Element).closest<HTMLElement>('[data-lightbox]');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      opener = a;
+      const src = a.dataset.lightbox!;
+      video.poster = `${src}.webp`; video.src = `${src}.mp4`;
+      box.setAttribute('aria-label', `${a.dataset.lightboxTitle ?? 'Website'}: screen recording`);
+      box.hidden = false; document.documentElement.classList.add('vlb-lock');
+      requestAnimationFrame(() => box.classList.add('is-open'));
+      video.play().catch(() => {});
+      close.focus();
+    });
+    close.addEventListener('click', hide);
+    box.addEventListener('click', (e) => { if (e.target === box) hide(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !box.hidden) hide(); });
+  }
+</script>
