@@ -37,10 +37,10 @@ def product(mid, screens, device, focals, bands=None):
     n = len(screens); DUR = 4.6 * n
     first = src(screens[0]); W, H = first.size
     if device == 'browser':
-        bands = bands or 5; save_w = 1200
+        bands = 1; save_w = 1200
         dw = 88; bar = 3.2; dh = dw * H / W + bar
     else:
-        bands = bands or 6; save_w = 520
+        bands = 1; save_w = 520
         dw = 33; bar = 0; dh = dw * H / W
     left, top = (100 - dw) / 2, (CARD_H - dh) / 2
 
@@ -64,7 +64,7 @@ def product(mid, screens, device, focals, bands=None):
             vis = f'0%, {a - e * .04:.2f}% {{ opacity: 0; transform: translateX(8%); }} {a + e * .04:.2f}%, {b - e * .04:.2f}% {{ opacity: 1; transform: none; }} {b:.2f}%, 100% {{ opacity: 0; transform: translateX(-6%); }}'
         css.append(f'{P}.is-on .sc{i} {{ animation: {mid}-v{i} {DUR}s cubic-bezier(.2,.7,.2,1) infinite; }} @keyframes {mid}-v{i} {{ {vis} }}')
         st = max(0, a - .01)
-        build = (f'0%, {st:.2f}% {{ opacity: 0; transform: translateY(28%); }} {a + e * .12:.2f}%, {b - e * .03:.2f}% {{ opacity: 1; transform: none; }} '
+        build = (f'0%, {st:.2f}% {{ opacity: 0; transform: translateY(4%) scale(.98); }} {a + e * .12:.2f}%, {b - e * .03:.2f}% {{ opacity: 1; transform: none; }} '
                  f'{b:.2f}%, 100% {{ opacity: {1 if i == n - 1 else 0}; }}')
         if i == n - 1: build = build.replace(f'{b:.2f}%, 100% {{ opacity: 1; }}', f'99.5% {{ opacity: 1; }} 100% {{ opacity: 0; }}')
         css.append(f'{P}.is-on .b{i} {{ animation: {mid}-b{i} {DUR}s cubic-bezier(.2,.7,.2,1) infinite; animation-delay: calc(var(--j) * .09s); }} @keyframes {mid}-b{i} {{ {build} }}')
