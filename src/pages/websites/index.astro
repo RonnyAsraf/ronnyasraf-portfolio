@@ -5,22 +5,44 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import VideoLightbox from '../../components/VideoLightbox.astro';
 import { allSites } from '../../data/projects';
 
+// 2025 and newer show first; older sites appear after "Load more".
+const card = (s: (typeof allSites)[number]) => ({ image: `images/cards/websites/${s.slug}`, name: s.name, tags: s.type, year: s.year, href: s.page, url: s.url });
+const recent = allSites.filter((s) => s.slug === 'roots-studio' || Number(s.year) >= 2025);
+const older = allSites.filter((s) => !recent.includes(s));
 const summary =
   'High-performing, responsive websites with a distinct visual identity. I lead every project personally, from strategy and site architecture through design, development and launch.';
 ---
 <Base title="Websites" description={summary}>
   <CaseHero title="websites" credits={['2023-26', 'Design & development\nCode, Wix Studio, Elementor, Shopify']} summary={summary} />
   <section class="grid wrap" aria-label="All websites">
-    {allSites.map((s) => <ProjectCard image={`images/cards/websites/${s.slug}`} name={s.name} tags={s.type} year={s.year} href={s.page} url={s.url} />)}
+    {recent.map((s) => <ProjectCard {...card(s)} />)}
+    <div class="more" id="older-sites">{older.map((s) => <ProjectCard {...card(s)} />)}</div>
   </section>
+  {older.length > 0 && (
+    <div class="wrap load"><button class="pill" type="button" aria-controls="older-sites" aria-expanded="false">Load more</button></div>
+  )}
   <VideoLightbox />
 </Base>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.load button');
+  btn?.addEventListener('click', () => {
+    document.getElementById('older-sites')?.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.parentElement!.remove();
+    window.dispatchEvent(new Event('scroll'));
+  });
+</script>
 
 <style>
   .grid {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px 40px;
     padding-bottom: var(--gap-section);
   }
+  .more { display: none; }
+  .more.is-open { display: contents; }
+  .load { display: flex; justify-content: center; margin-top: calc(var(--gap-section) * -0.5); padding-bottom: var(--gap-section); }
+  .load .pill { border: 0; cursor: pointer; font-family: inherit; }
   @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 48px 24px; } }
   @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
 </style>
