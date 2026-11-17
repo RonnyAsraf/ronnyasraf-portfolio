@@ -98,6 +98,32 @@ def product(mid, screens, device, focals, bands=None):
             f'{CURSOR if device == "browser" else ""}</div></div></div>')
     return html, '\n'.join(css)
 
+# ---------------------------------------------------------------- rapid phone cards
+def rapid(mid, screens, hold=0.85):
+    """A phone that flips through many screens quickly (for projects whose screens are rough up close)."""
+    out = f'{REPO}/public/images/motion/{mid}'; os.makedirs(out, exist_ok=True)
+    for f in glob.glob(out + '/*'): os.remove(f)
+    n = len(screens); DUR = hold * n
+    first = src(screens[0]); W, H = first.size
+    dw = 33; dh = dw * H / W
+    left, top = (100 - dw) / 2, (CARD_H - dh) / 2
+    P = f'.m-{mid}'; tiles, css = [], []
+    for i, name in enumerate(screens):
+        im = src(name); im = im if im.size == (W, H) else im.resize((W, H), Image.LANCZOS)
+        url = save(im, out, f's{i}', 520)
+        tiles.append(f'<div class="scene sc{i}"><img class="band" style="top:0;height:100%;opacity:1" data-src="{url}" alt="" /></div>')
+        a, b, e = i / n * 100, (i + 1) / n * 100, 100 / n
+        # slides up into place, holds, then the next screen covers it
+        k = (f'0%, {max(0, a - .01):.2f}% {{ opacity: 0; transform: translateY(6%); }} {a + e * .22:.2f}% {{ opacity: 1; transform: none; }} '
+             f'{min(100, b + e * .22):.2f}% {{ opacity: 1; transform: none; }} {min(100, b + e * .23):.2f}%, 100% {{ opacity: 0; }}')
+        if i == 0: k = f'0% {{ opacity: 0; transform: translateY(6%); }} {e * .22:.2f}%, {b + e * .22:.2f}% {{ opacity: 1; transform: none; }} {b + e * .23:.2f}%, 100% {{ opacity: 0; }}'
+        css.append(f'{P}.is-on .sc{i} {{ z-index: {i + 1}; animation: {mid}-v{i} {DUR:.2f}s cubic-bezier(.2,.7,.2,1) infinite; }} @keyframes {mid}-v{i} {{ {k} }}')
+    # the phone rises in and drifts slightly while the screens change
+    css.append(f'{P}.is-on .rig {{ animation: {mid}-r {DUR:.2f}s ease-in-out infinite; }} @keyframes {mid}-r {{ 0% {{ transform: translateY(4cqw) scale(.96); opacity: 0; }} 6% {{ transform: none; opacity: 1; }} 50% {{ transform: translateY(-1cqw) rotate(-1.5deg); }} 94% {{ transform: none; opacity: 1; }} 100% {{ transform: translateY(2cqw); opacity: 0; }} }}')
+    html = (f'<div class="cm m-{mid}" aria-hidden="true"><div class="rig" style="left:{left:.2f}cqw;top:{top:.2f}cqw;width:{dw:.2f}cqw;height:{dh:.2f}cqw">'
+            f'<div class="dev dev--phone"><div class="scr" style="top:0">{"".join(tiles)}</div></div></div></div>')
+    return html, '\n'.join(css)
+
 # ---------------------------------------------------------------- website cards
 def site(mid, desk, phone, dfocal=(50, 30, 1.35), pfocal=(50, 30, 1.3)):
     out = f'{REPO}/public/images/motion/{mid}'; os.makedirs(out, exist_ok=True)
@@ -149,7 +175,7 @@ M[U + 'memorit-co'] = product('memorit', ['memorit-1', 'memorit-2', 'memorit-3']
 M[U + 'wordle'] = product('wordle', ['wordle-1', 'wordle-2', 'wordle-3'], 'phone', [(50, 46, 1.35), (50, 34, 1.35), (50, 40, 1.35)])
 M[U + 'granot'] = product('granot', ['granot-1', 'granot-2', 'granot-3'], 'phone', [(50, 30, 1.35), (50, 34, 1.35), (50, 34, 1.35)])
 M[U + 'stork'] = product('stork', ['stork-1', 'stork-2', 'stork-3'], 'browser', [(62, 50, 1.4), (50, 42, 1.45), (40, 30, 1.45)])
-M[U + 'travelouge'] = product('travelouge', ['travelouge-1', 'travelouge-2', 'travelouge-3'], 'phone', [(50, 30, 1.35), (50, 40, 1.35), (50, 34, 1.35)])
+M[U + 'travelouge'] = rapid('travelouge', [f'trav-{i}' for i in range(1, 10)])
 M[U + 'nftick'] = product('nftick', ['nftick-1', 'nftick-2', 'nftick-3'], 'phone', [(50, 40, 1.35), (50, 30, 1.35), (50, 40, 1.35)])
 M[U + 'takecair'] = product('takecair', ['takecair-1', 'takecair-2', 'takecair-3'], 'phone', [(50, 38, 1.35), (50, 40, 1.35), (50, 34, 1.35)])
 M[S + 'otto-seven-senses'] = site('otto', 'otto-d', 'otto-m')
