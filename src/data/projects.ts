@@ -34,7 +34,7 @@ export const websiteProjects: Project[] = [
   { slug: 'ganit-park', name: 'Ganit Park', title: 'ganit park', tags: 'Website, Elementor', year: '2025', credits: ['Website\n2025', 'Website design\nElementor'], summary: 'A company that has been designing, making and installing playgrounds, outdoor fitness equipment and urban furniture for cities and developers since 1978.', url: 'https://www.ganit.co.il/' },
   { slug: 'greenclick', name: 'GreenClick', title: 'greenclick', tags: 'Website, Code', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A cloud distribution platform that lets cloud distributors, resellers and MSPs manage pricing, provisioning and billing for their whole reseller chain in one place.' },
   { slug: 'go-power', name: 'Go Power', title: 'go power', tags: 'E-commerce, Wix Studio', year: '2025', credits: ['E-commerce\n2025', 'Design & development\nWix Studio'], summary: 'An online store for backup power and energy storage, from portable power stations to home battery systems, for homes and businesses.', url: 'https://www.go-power.ai/' },
-  { slug: 'qombat', name: 'Qombat', title: 'qombat', tags: 'Website, Wix Studio', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A quantum technology company that protects sensitive data and communications for governments, defense and critical infrastructure against future quantum threats.', url: 'http://www.qombat.ltd' },
+  { slug: 'qombat', name: 'Qombat', title: 'qombat', tags: 'Website, Wix Studio', year: '2025', credits: ['Website\n2025', 'Design & development\nWix Studio'], summary: 'A quantum technology company that protects sensitive data and communications for governments, defense and critical infrastructure against future quantum threats.' },
 ];
 
 /** Every live site, as on the current Websites page. `page` links to an internal project page when one exists. */
@@ -62,7 +62,7 @@ export const allSites: Site[] = [
   { slug: 'kami', name: 'Kami', type: 'E-commerce, Wix Studio', year: '2025', url: 'https://www.kami.hair/' },
   { slug: 'menasim', name: 'Menasim', type: 'Website, Wix Studio', year: '2025', url: 'https://www.menasim.org/' },
   { slug: 'go-fiber', name: 'Go Fiber', type: 'Website, Wix Studio', year: '2025', url: 'https://www.gofiber.ai/' },
-  { slug: 'qombat', name: 'Qombat', type: 'Website, Elementor', year: '2025', url: 'http://www.qombat.ltd', page: '/websites/qombat' },
+  { slug: 'qombat', name: 'Qombat', type: 'Website, Elementor', year: '2025', page: '/websites/qombat' },
   { slug: 'terrasafe', name: 'TerraSafe', type: 'Website, Wix Studio', year: '2025', url: 'https://www.terrasafe.co.il/' },
   { slug: 'go-catalog', name: 'Go Catalog', type: 'Landing Page, Wix Studio', year: '2025', url: 'https://www.go-n-go.com/catalog' },
   { slug: 'ican', name: 'ICAN', type: 'Website, Wix Studio', year: '2025', url: 'https://www.icanstrategy.com/' },
