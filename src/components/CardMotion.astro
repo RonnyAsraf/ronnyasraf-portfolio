@@ -36,6 +36,7 @@ const m = cardMotions[Astro.props.image];
   .cm .cur { position: absolute; width: 2.6cqw; height: 2.6cqw; left: 80%; top: 80%; opacity: 0; filter: drop-shadow(0 .2cqw .4cqw rgba(0,0,0,.25)); }
   .cm .tap { position: absolute; width: 5cqw; aspect-ratio: 1; border-radius: 50%; background: rgba(14, 14, 14, .16); border: .25cqw solid rgba(255,255,255,.9); opacity: 0; transform: translate(-50%, -50%); }
   @keyframes cm-dev { 0% { opacity: 0; transform: translateY(4cqw) scale(.95); } 4%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  .card.is-paused .card__media * { animation-play-state: paused !important; }
   @media (prefers-reduced-motion: reduce) { .cm { display: none; } }
 </style>
 
@@ -56,8 +57,17 @@ const m = cardMotions[Astro.props.image];
         c.addEventListener('focusin', () => play(c, true)); c.addEventListener('focusout', () => play(c, false));
       });
     } else {
-      const io = new IntersectionObserver((es) => es.forEach((e) => play(e.target as HTMLElement, e.isIntersecting)), { threshold: 0.6 });
-      cards.forEach((c) => io.observe(c));
+      // Touch screens: every animated card shows its animation instead of the static image.
+      // It plays while on screen and pauses off screen; images load shortly before the card arrives.
+      const all = document.querySelectorAll<HTMLElement>('.card:has(.cm, .motion)');
+      const load = (c: HTMLElement) => c.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((i) => { i.src = i.dataset.src!; i.removeAttribute('data-src'); });
+      const near = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { load(e.target as HTMLElement); near.unobserve(e.target); } }), { rootMargin: '100% 100%' });
+      const vis = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('is-paused', !e.isIntersecting)), { threshold: 0 });
+      all.forEach((c) => {
+        c.classList.add('is-playing', 'is-paused');
+        c.querySelector('.cm')?.classList.add('is-on');
+        near.observe(c); vis.observe(c);
+      });
     }
   }
 </script>

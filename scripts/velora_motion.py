@@ -142,9 +142,6 @@ html = f'''---
         c.addEventListener('mouseenter', on); c.addEventListener('mouseleave', off);
         c.addEventListener('focusin', on); c.addEventListener('focusout', off);
       }});
-    }} else {{
-      const io = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('is-playing', e.isIntersecting)), {{ threshold: 0.6 }});
-      cards.forEach((c) => io.observe(c));
     }}
   }}
 </script>
