@@ -25,6 +25,7 @@ export const cardColors: Record<string, string> = {
   "images/cards/websites/timelines-site": "#d4eff3",
   "images/cards/websites/timelines-albums": "#dbe5f4",
   "images/cards/websites/sheleg": "#e1e9f0",
+  "images/cards/websites/lerni-site": "#dcefe0",
   "images/cards/websites/eigenq": "#d7e0f4",
   "images/cards/websites/emris-pharma": "#f0e0db",
   "images/cards/websites/ganit-park": "#d7e9f4",

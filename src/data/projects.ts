@@ -42,6 +42,7 @@ export const websiteProjects: Project[] = [
 export interface Site { slug: string; name: string; type: string; year: string; url?: string; page?: string; archived?: boolean; summary?: string; }
 
 export const allSites: Site[] = [
+  // Sorted by year (newest first); within a year live sites come before ones that are no longer live (TfilaTech is the exception, placed higher). Otto keeps its spot.
   { slug: 'cover-site', name: 'Cover', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.coverpos.com/', page: '/websites/cover-site' },
   { slug: 'auto-fit', name: 'AutoFit', type: 'Landing Page, Code', year: '2026', url: 'https://auto-fit.co.il/', page: '/websites/auto-fit' },
   { slug: 'otto-seven-senses', name: 'Otto Seven Senses', type: 'Website, Wix Studio', year: '2025', url: 'https://www.otto7senses.com/', page: '/websites/otto-seven-senses' },
@@ -49,11 +50,13 @@ export const allSites: Site[] = [
   { slug: 'petra', name: 'Petra', type: 'Template, Wix Studio', year: '2026', url: 'https://www.wix.com/marketplace/template/e16c9ada-0910-4839-80ec-5176eedac7a4' },
   { slug: 'the-code-of-creation', name: 'The Code of Creation', type: 'Landing Page, Wix Studio', year: '2026', url: 'https://www.karin360.com/', page: '/websites/the-code-of-creation' },
   { slug: 'neho-design', name: 'Neho Design', type: 'Landing Page, Code', year: '2026', url: 'https://nehodesign.co.il/' },
-  { slug: 'ganit-park', name: 'Ganit Park', type: 'Website, Elementor', year: '2025', url: 'https://www.ganit.co.il/', page: '/websites/ganit-park' },
   { slug: 'avni-derech-school', name: 'Avni Derech School', type: 'Website, Wix Studio', year: '2026', url: 'https://www.montessori-herzliya.co.il/' },
+  { slug: 'lerni-site', name: 'Lerni', type: 'Website, Wix Studio', year: '2026', page: '/websites/lerni-site', archived: true, summary: 'A website for a work management and hourly billing system for freelancers, private tutors and professionals: clients, scheduling, time tracking and payments in one place.' },
+  { slug: 'ganit-park', name: 'Ganit Park', type: 'Website, Elementor', year: '2025', url: 'https://www.ganit.co.il/', page: '/websites/ganit-park' },
   { slug: 'go-power', name: 'Go Power', type: 'E-commerce, Wix Studio', year: '2025', url: 'https://www.go-power.ai/', page: '/websites/go-power' },
   { slug: 'rakafot-project', name: 'Rakafot Project', type: 'Landing Page, Wix Studio', year: '2025', url: 'https://www.mo-p.co.il/rakafot-project-landing-page' },
   { slug: 'velora-site', name: 'Velora', type: 'Website, Wix Studio', year: '2025', url: 'https://www.velora-finance.com/', page: '/case-studies/velora' },
+  { slug: 'tfilatech', name: 'TfilaTech', type: 'Website, Elementor', year: '2025', page: '/websites/tfilatech', archived: true, summary: 'A website for a platform offering accessible, secular-friendly Jewish content: prayers, blessings, holidays and daily times.' },
   { slug: 'moshe-peretz', name: 'Moshe Peretz', type: 'Website, Wix Studio', year: '2025', url: 'https://www.mo-p.co.il/' },
   { slug: 'greenclick', name: 'GreenClick', type: 'Website, Code', year: '2025', page: '/websites/greenclick' },
   { slug: 'kami', name: 'Kami', type: 'E-commerce, Wix Studio', year: '2025', url: 'https://www.kami.hair/' },
@@ -62,24 +65,22 @@ export const allSites: Site[] = [
   { slug: 'qombat', name: 'Qombat', type: 'Website, Elementor', year: '2025', url: 'http://www.qombat.ltd', page: '/websites/qombat' },
   { slug: 'terrasafe', name: 'TerraSafe', type: 'Website, Wix Studio', year: '2025', url: 'https://www.terrasafe.co.il/' },
   { slug: 'go-catalog', name: 'Go Catalog', type: 'Landing Page, Wix Studio', year: '2025', url: 'https://www.go-n-go.com/catalog' },
-  { slug: 'eigenq', name: 'EigenQ', type: 'Website, Wix Studio', year: '2025', page: '/websites/eigenq', archived: true, summary: 'A website for a quantum security company that builds quantum hardware and software for enterprise and government, with pages for its products, technology, use cases and investors.' },
-  { slug: 'makom-yafe-lecafe', name: 'Makom Yafe Lecafe', type: 'Landing Page, Wix Studio', year: '2024', url: 'http://www.makomyafelecafe.com' },
   { slug: 'ican', name: 'ICAN', type: 'Website, Wix Studio', year: '2025', url: 'https://www.icanstrategy.com/' },
-  { slug: 'roots-studio', name: "Root's Studio", type: 'Website, Wix Studio', year: '2023', url: 'http://ronnyasraf.wixstudio.com/galwuntch' },
   { slug: 'streetwise', name: 'StreetWise', type: 'Landing Page, Wix Studio', year: '2025', url: 'http://www.streetwisebi.com' },
   { slug: 'noam-physiotherapy', name: 'Noam Physiotherapy', type: 'Website, Wix', year: '2025', url: 'https://www.noamphysio.co.il/' },
+  { slug: 'haetz-herzeliya', name: 'Haetz Herzeliya', type: 'Website, Wix Studio', year: '2025', url: 'http://www.haetz-herzelia.co.il' },
+  { slug: 'eigenq', name: 'EigenQ', type: 'Website, Wix Studio', year: '2025', page: '/websites/eigenq', archived: true, summary: 'A website for a quantum security company that builds quantum hardware and software for enterprise and government, with pages for its products, technology, use cases and investors.' },
+  { slug: 'yafo-ai', name: 'Yafo.ai', type: 'Website, Wix Studio', year: '2025', page: '/websites/yafo-ai', archived: true, summary: 'A website for an AI education and community hub for Israeli audiences, with events and content on the big questions AI raises.' },
+  { slug: 'evel-israel', name: 'Evel Israel', type: 'Website, Wix Studio', year: '2025', page: '/websites/evel-israel', archived: true, summary: 'A clean, accessible website for a service that makes creating a memorial notice simple.' },
+  { slug: 'makom-yafe-lecafe', name: 'Makom Yafe Lecafe', type: 'Landing Page, Wix Studio', year: '2024', url: 'http://www.makomyafelecafe.com' },
   { slug: 'orly-assaraf', name: 'Orly Assaraf', type: 'Website, Wix Studio', year: '2024', url: 'http://www.orlya.co.il' },
   { slug: 'emris-pharma', name: 'Emris Pharma', type: 'Website, Elementor', year: '2024', url: 'http://www.emris-pharma.com' },
   { slug: 'club-d', name: 'Club-D', type: 'Website, Elementor', year: '2024', url: 'http://www.clubd.fund' },
-  { slug: 'haetz-herzeliya', name: 'Haetz Herzeliya', type: 'Website, Wix Studio', year: '2025', url: 'http://www.haetz-herzelia.co.il' },
   { slug: 'urbanica', name: 'Urbanica', type: 'Website, Shopify', year: '2024', url: 'http://urbanicafurniture.com' },
-  // No longer live: the card plays the recording and View project opens it large. Kept low in the list, most are older.
-  { slug: 'tfilatech', name: 'TfilaTech', type: 'Website, Elementor', year: '2025', page: '/websites/tfilatech', archived: true, summary: 'A website for a platform offering accessible, secular-friendly Jewish content: prayers, blessings, holidays and daily times.' },
-  { slug: 'yafo-ai', name: 'Yafo.ai', type: 'Website, Wix Studio', year: '2025', page: '/websites/yafo-ai', archived: true, summary: 'A website for an AI education and community hub for Israeli audiences, with events and content on the big questions AI raises.' },
-  { slug: 'evel-israel', name: 'Evel Israel', type: 'Website, Wix Studio', year: '2025', page: '/websites/evel-israel', archived: true, summary: 'A clean, accessible website for a service that makes creating a memorial notice simple.' },
   { slug: 'timelines-site', name: 'Timelines', type: 'Website, Wix Studio', year: '2024', page: '/websites/timelines-site', archived: true, summary: 'A website for a photo-sharing app used by kindergartens, where teachers share daily photos with parents.' },
   { slug: 'timelines-albums', name: 'Timelines Albums', type: 'Landing Page, Wix Studio', year: '2024', page: '/websites/timelines-albums', archived: true, summary: 'A landing page for an app that turns trip photos into printed albums automatically.' },
   { slug: 'sheleg', name: 'Sheleg', type: 'Website, Elementor', year: '2024', page: '/websites/sheleg', archived: true, summary: 'A website for a boutique construction company specializing in light-frame homes.' },
+  { slug: 'roots-studio', name: "Root's Studio", type: 'Website, Wix Studio', year: '2023', url: 'http://ronnyasraf.wixstudio.com/galwuntch' },
 ];
 
 /** Card order used on the home page and in the "Other ..." carousels at the bottom of project pages. */
