@@ -23,6 +23,13 @@ export const uxuiProjects: Project[] = [
   { slug: 'oh-hi', name: 'OH-HI!', title: 'OH-HI!', tags: 'UX, mobile', year: '2024', credits: ['Keren Fox\n2024', 'UX design\nEvents & community'], summary: 'UX design for OH-HI!, an events app where members discover meetups and connect with other participants, with a separate view for community managers.' },
   { slug: 'greenclick', name: 'GreenClick', title: 'greenclick', tags: 'Dashboard', year: '2025', credits: ['GreenClick\n2025', 'Dashboard design\nFinance'], summary: 'Dashboard design for GreenClick, a finance technology product.' },
   { slug: 'memorit-co', name: 'Memorit.co', title: 'memorit.co', tags: 'Branding, UI/UX, mobile', year: '2023', credits: ['Harel Tussi\n2023', 'Branding, UX & UI\nLanding page & social'], summary: 'Branding, UX and UI, a landing page and social media for Memorit.co, a games brand.' },
+  { slug: 'wordle', name: 'Wordle', title: 'wordle', tags: 'Branding, UI/UX, mobile', year: '2023', credits: ['Liav Kuperman\n2023', 'UX & UI design\nBranding'], summary: 'UX, UI and branding for a Hebrew version of the classic word-guessing game, built to be playful and easy to pick up.' },
+  { slug: 'granot', name: 'Granot', title: 'granot', tags: 'UX, mobile', year: '2024', credits: ['Primak\n2024', 'UX design\nLogistics'], summary: 'UX design for an app that helps moving-company foremen manage crews, routes and customer updates on the job.' },
+  { slug: 'stork', name: 'Stork', title: 'stork', tags: 'UI/UX, dashboard', year: '2024-25', credits: ['Stork\n2024-25', 'UX & UI design\nLuxury e-commerce'], summary: 'UX and UI design for an AI-powered digital warehouse that gives online sellers access to over a million authenticated luxury products.' },
+  { slug: 'travelouge', name: 'Travelouge', title: 'travelouge', tags: 'UX, mobile', year: '2024', credits: ['Primak\n2024', 'UX design\nTravel'], summary: 'UX design for a social travel platform that turns trip planning into three simple steps.' },
+  { slug: 'nftick', name: 'NFTick', title: 'nftick', tags: 'Branding, UI/UX', year: '2023', credits: ['Harel Tussi\n2023', 'UX & UI design\nBranding'], summary: 'UX, UI and branding for a platform that tracks upcoming NFT drops and events in one dashboard.' },
+  { slug: 'caesarstone', name: 'Caesarstone', title: 'caesarstone', tags: 'UI/UX, concept', year: '2025', credits: ['Sheleg Technologies\n2025', 'UX & UI design\nConcept'], summary: 'Concept design for a platform where homeowners and interior designers design and order their kitchen online.' },
+  { slug: 'takecair', name: 'TakeCair', title: 'takecair', tags: 'Branding, UI/UX, mobile', year: '2025', credits: ['Primak\n2025', 'UX & UI design\nBranding'], summary: 'UX, UI and branding for an app that helps teenagers manage stress, using data from their smartwatch.' },
 ];
 
 export const websiteProjects: Project[] = [
@@ -84,5 +91,6 @@ export const allSites: Site[] = [
 ];
 
 /** Card order used on the home page and in the "Other ..." carousels at the bottom of project pages. */
-export const HOME_UXUI = ['bluex-ai', 'sense', 'lerni', 'rge-onboarding', 'greenclick', 'memorit-co', 'oh-hi'];
+// Caesarstone joins once its card image is ready (its page already exists).
+export const HOME_UXUI = ['bluex-ai', 'sense', 'lerni', 'rge-onboarding', 'greenclick', 'memorit-co', 'oh-hi', 'wordle', 'granot', 'stork', 'travelouge', 'nftick', 'takecair'];
 export const HOME_SITES = ['auto-fit', 'cover-site', 'otto-seven-senses', 'the-code-of-creation', 'the-morning-club', 'ganit-park', 'go-power', 'greenclick', 'qombat'];
