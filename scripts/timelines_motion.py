@@ -29,12 +29,12 @@ def scene(img, name, tiles):
     save(base, f'{name}-base')
     return out
 
-S1 = scene(f('o3eecd-909f3253'), 'a',
+S1 = scene(f('3vh1pu-ea7a994b'), 'a',
     [(f'r{i}', 0, y, W, 86, 'up') for i, y in enumerate([120, 211, 301, 392, 483, 574, 664])])
-S2 = scene(f('2hpyga-e482b207'), 'b', [
+S2 = scene(f('ps8f3d-84736f98'), 'b', [
     ('hero', 0, 96, W, 256, 'up'), ('knob', 166, 371, 24, 24, 'knob'),
     ('tags', 40, 436, 360, 72, 'up'), ('month', 140, 528, 150, 34, 'up'), ('post', 26, 572, 376, 354, 'up')])
-img3 = f('xsrfl7-b87e07c8')
+img3 = f('t04kzs-5c01cd83')
 S3 = scene(img3, 'c', [
     ('pick', 30, 112, 368, 56, 'up'), ('auto', 150, 178, 252, 28, 'up'),
     ('p1', 30, 226, 368, 182, 'up'), ('p2', 30, 420, 368, 230, 'up'), ('p3', 30, 662, 368, 124, 'up'), ('foot', 0, 790, W, 136, 'up', img3.getpixel((5, 920)))])
