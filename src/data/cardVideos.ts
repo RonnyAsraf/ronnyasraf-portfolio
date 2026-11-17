@@ -20,6 +20,7 @@ export const cardVideos: Record<string, string> = {
  "noam-physiotherapy": "fc84952c",
  "orly-assaraf": "859e0ade",
  "otto-seven-senses": "c0972df9",
+ "petra": "5f6ef660",
  "qombat": "c8c6cb2a",
  "rakafot-project": "ff711850",
  "streetwise": "92513415",
