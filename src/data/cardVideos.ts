@@ -1,21 +1,31 @@
-/** Full-homepage scroll recordings for website cards (public/images/motion/sites/<slug>.mp4), with a cache-busting hash. */
+/** Full-homepage scroll videos for website cards (public/images/motion/sites/<slug>.mp4), with a cache-busting hash. */
 export const cardVideos: Record<string, string> = {
+ "auto-fit": "bd43af0b",
+ "avni-derech-school": "28c77a33",
  "club-d": "94581130",
+ "cover-site": "3c04121f",
  "eigenq": "6229f985",
  "emris-pharma": "fa0ea184",
  "ganit-park": "ae735ac6",
  "go-catalog": "b87aaf70",
  "go-fiber": "bace78f9",
+ "greenclick": "b41bbc4e",
  "haetz-herzeliya": "0d54d27a",
  "ican": "343189a7",
+ "kami": "98245346",
  "makom-yafe-lecafe": "1c0fa6ca",
  "menasim": "b7b1dd84",
+ "moshe-peretz": "9e043515",
+ "neho-design": "73993b06",
  "noam-physiotherapy": "fc84952c",
  "orly-assaraf": "859e0ade",
  "otto-seven-senses": "c0972df9",
  "qombat": "c8c6cb2a",
+ "rakafot-project": "ff711850",
  "streetwise": "92513415",
  "terrasafe": "ee5c3693",
+ "the-code-of-creation": "f7273f5a",
+ "the-morning-club": "e774e5ac",
  "urbanica": "78f40aef",
  "velora-site": "1b01f42f"
 };
