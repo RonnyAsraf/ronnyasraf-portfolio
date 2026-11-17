@@ -1,6 +1,6 @@
 /** Full-homepage scroll videos for website cards (public/images/motion/sites/<slug>.mp4), with a cache-busting hash. */
 export const cardVideos: Record<string, string> = {
- "auto-fit": "bd43af0b",
+ "auto-fit": "d2218081",
  "avni-derech-school": "28c77a33",
  "club-d": "94581130",
  "cover-site": "3c04121f",
