@@ -4,9 +4,24 @@
  * Images use data-src and only load the first time the card plays, so the page stays light.
  */
 import { cardMotions } from '../data/cardMotions';
+import { cardVideos } from '../data/cardVideos';
 interface Props { image: string }
-const m = cardMotions[Astro.props.image];
+const { image } = Astro.props;
+// Website cards with a real full-homepage scroll recording use the video; the rest use the generated motion.
+const site = image.startsWith('images/cards/websites/') ? image.slice('images/cards/websites/'.length) : '';
+const vid = site && cardVideos[site] ? `/images/motion/sites/${site}.mp4?v=${cardVideos[site]}` : '';
+const m = vid ? undefined : cardMotions[image];
 ---
+{vid && (
+  <div class="cm cm--vid" aria-hidden="true">
+    <div class="rig">
+      <div class="dev dev--browser">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="scr" style="top:3.2cqw"><video muted playsinline loop preload="none" data-src={vid}></video></div>
+      </div>
+    </div>
+  </div>
+)}
 {m && (
   <>
     <Fragment set:html={m.html} />
@@ -35,6 +50,9 @@ const m = cardMotions[Astro.props.image];
   .cm .pg { position: absolute; left: 0; top: 0; width: 100%; height: auto; display: block; }
   .cm .cur { position: absolute; width: 2.6cqw; height: 2.6cqw; left: 80%; top: 80%; opacity: 0; filter: drop-shadow(0 .2cqw .4cqw rgba(0,0,0,.25)); }
   .cm .tap { position: absolute; width: 5cqw; aspect-ratio: 1; border-radius: 50%; background: rgba(14, 14, 14, .16); border: .25cqw solid rgba(255,255,255,.9); opacity: 0; transform: translate(-50%, -50%); }
+  .cm--vid .rig { left: 6cqw; top: 19.45cqw; width: 88cqw; height: 47.2cqw; transform: translateY(3cqw) scale(.96); opacity: 0; transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .5s ease; }
+  .cm--vid.is-on .rig { transform: none; opacity: 1; }
+  .cm--vid video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; background: #fff; }
   @keyframes cm-dev { 0% { opacity: 0; transform: translateY(4cqw) scale(.95); } 4%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
   .card.is-paused .card__media * { animation-play-state: paused !important; }
   @media (prefers-reduced-motion: reduce) { .cm { display: none; } }
@@ -47,6 +65,14 @@ const m = cardMotions[Astro.props.image];
     const m = c.querySelector<HTMLElement>('.cm');
     if (!m) return;
     if (on) m.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((i) => { i.src = i.dataset.src!; i.removeAttribute('data-src'); });
+    const v = m.querySelector<HTMLVideoElement>('video');
+    if (v) {
+      if (on) {
+        if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); }
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      } else v.pause();
+    }
     c.classList.toggle('is-playing', on);
     m.classList.toggle('is-on', on);
   };
@@ -60,9 +86,14 @@ const m = cardMotions[Astro.props.image];
       // Touch screens: every animated card shows its animation instead of the static image.
       // It plays while on screen and pauses off screen; images load shortly before the card arrives.
       const all = document.querySelectorAll<HTMLElement>('.card:has(.cm, .motion)');
-      const load = (c: HTMLElement) => c.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((i) => { i.src = i.dataset.src!; i.removeAttribute('data-src'); });
+      const load = (c: HTMLElement) => c.querySelectorAll<HTMLImageElement | HTMLVideoElement>('img[data-src], video[data-src]').forEach((i) => { i.src = i.dataset.src!; i.removeAttribute('data-src'); });
+      const vidOf = (c: Element) => c.querySelector<HTMLVideoElement>('.cm--vid video');
       const near = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { load(e.target as HTMLElement); near.unobserve(e.target); } }), { rootMargin: '100% 100%' });
-      const vis = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('is-paused', !e.isIntersecting)), { threshold: 0 });
+      const vis = new IntersectionObserver((es) => es.forEach((e) => {
+        e.target.classList.toggle('is-paused', !e.isIntersecting);
+        const v = vidOf(e.target);
+        if (v) { if (e.isIntersecting) { load(e.target as HTMLElement); v.play().catch(() => {}); } else v.pause(); }
+      }), { threshold: 0 });
       all.forEach((c) => {
         c.classList.add('is-playing', 'is-paused');
         c.querySelector('.cm')?.classList.add('is-on');
