@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import CaseHero from '../../components/CaseHero.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import VideoLightbox from '../../components/VideoLightbox.astro';
+import Packages from '../../components/Packages.astro';
 import { allSites } from '../../data/projects';
 
 // 2025 and newer show first; older sites appear after "Load more".
@@ -21,6 +22,7 @@ const summary =
   {older.length > 0 && (
     <div class="wrap load"><button class="pill" type="button" aria-controls="older-sites" aria-expanded="false">Load more</button></div>
   )}
+  <Packages />
   <VideoLightbox />
 </Base>
 

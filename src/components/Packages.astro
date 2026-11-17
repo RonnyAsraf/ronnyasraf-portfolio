@@ -1,0 +1,90 @@
+---
+/** Website packages (scope and timeline per package, no prices yet). Shown under the sites on /websites. */
+import { site } from '../data/site';
+
+const packages = [
+  {
+    title: 'Landing page',
+    intro: 'One focused page for a launch, a campaign or a small business that needs to look sharp, fast.',
+    time: '2-3 weeks',
+    items: ['One scrolling page, up to 7 sections', 'Custom design for desktop and mobile', 'Contact form and WhatsApp button', 'Accessibility and basic SEO', '2 rounds of revisions'],
+  },
+  {
+    title: 'Business website',
+    intro: 'A full website of up to 6 pages that presents your business, services and work.',
+    time: '4-6 weeks',
+    items: ['Up to 6 pages', 'Site structure and wireframes', 'Custom design for desktop and mobile', 'Blog or projects section you can update yourself', 'Accessibility, SEO and analytics setup', '3 rounds of revisions'],
+    dark: true,
+  },
+  {
+    title: 'E-commerce',
+    intro: 'An online store on Shopify or Wix Studio, ready to sell from day one.',
+    time: '6-8 weeks',
+    items: ['Home, category, product and cart pages', 'Up to 30 products uploaded', 'Payments, shipping and tax setup', 'Accessibility, SEO and analytics setup', 'A training session on managing the store', '3 rounds of revisions'],
+  },
+];
+---
+<section class="pk wrap" aria-labelledby="pk-title">
+  <div class="pk__head">
+    <div class="pk__titles">
+      <p class="label">Packages</p>
+      <h2 id="pk-title">Website packages</h2>
+    </div>
+    <p class="pk__lead">A clear scope for every type of site. Every package includes custom design, development, a mobile version, accessibility and basic SEO.</p>
+  </div>
+
+  <div class="pk__grid">
+    {packages.map((p, i) => (
+      <article class:list={['pk__card', { 'pk__card--dark': p.dark }]}>
+        <div class="pk__top">
+          <p class="meta pk__num">{String(i + 1).padStart(2, '0')}</p>
+          <h3>{p.title}</h3>
+          <p class="pk__intro">{p.intro}</p>
+        </div>
+        <p class="pk__time"><span class="meta">Timeline</span>{p.time}</p>
+        <ul>
+          {p.items.map((it) => (
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" /></svg>{it}</li>
+          ))}
+        </ul>
+        <a class:list={['pill', { 'pill--light': p.dark }]} href={site.whatsapp} target="_blank" rel="noopener">Let's talk</a>
+      </article>
+    ))}
+  </div>
+
+  <div class="pk__foot">
+    <p>Packages do not include the platform subscription, domain, copywriting or photography. Need something that doesn't fit a package? I'll put together a custom quote.</p>
+    <a class="label link-underline" href={site.whatsapp} target="_blank" rel="noopener">Get a custom quote</a>
+  </div>
+</section>
+
+<style>
+  .pk { display: flex; flex-direction: column; gap: clamp(32px, 20px + 3vw, 64px); padding-bottom: var(--gap-section); }
+  .pk__head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+  .pk__titles { display: flex; flex-direction: column; gap: 16px; }
+  .pk h2 { font-size: clamp(40px, 24px + 3.4vw, 72px); font-weight: 500; line-height: 1; letter-spacing: -0.03em; }
+  .pk__lead { font-size: var(--fs-caption); line-height: 1.4; color: #3a3a3a; max-width: 560px; }
+  .pk__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pk__card { background: var(--card); border-radius: var(--radius-panel); padding: clamp(24px, 18px + 1vw, 36px); display: flex; flex-direction: column; gap: 28px; }
+  .pk__card--dark { background: var(--ink); color: var(--white); }
+  .pk__top { display: flex; flex-direction: column; gap: 12px; }
+  .pk__num { color: #5c5c5c; }
+  .pk__card--dark .pk__num, .pk__card--dark .pk__time .meta { color: #b3b3b3; }
+  .pk h3 { font-size: clamp(24px, 20px + 0.6vw, 32px); font-weight: 500; letter-spacing: -0.02em; }
+  .pk__intro { font-size: 16px; line-height: 1.5; color: #4a4a4a; }
+  .pk__card--dark .pk__intro { color: #c9c9c9; }
+  .pk__time { display: flex; justify-content: space-between; align-items: baseline; padding-block: 18px; border-block: 1px solid var(--line); font-size: 16px; font-weight: 500; }
+  .pk__time .meta { color: #5c5c5c; }
+  .pk__card--dark .pk__time { border-color: #333; }
+  .pk ul { display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.4; flex: 1; }
+  .pk li { display: flex; gap: 12px; }
+  .pk li svg { flex: none; width: 18px; height: 18px; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .pk .pill { text-transform: none; }
+  .pk__foot { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; font-size: 14px; line-height: 1.5; color: #5c5c5c; }
+  .pk__foot p { max-width: 760px; }
+  .pk__foot a { color: var(--ink); }
+  @media (max-width: 900px) {
+    .pk__grid { grid-template-columns: 1fr; }
+    .pk__head { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
